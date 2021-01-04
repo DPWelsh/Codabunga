@@ -59,7 +59,7 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Hello Friend NG"
+  homeSubtitle = "Welcome to CodaBunga"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   #
@@ -123,25 +123,25 @@ disableHugoGeneratorInject = false
   #   maxWidth = "50px"
 
   # Social icons
-  [[params.social]]
-    name = "twitter"
-    url  = "https://twitter.com/"
+  # [[params.social]]
+  # name = "twitter"
+  # url  = "https://twitter.com/"
 
-  [[params.social]]
-    name = "email"
-    url  = "mailto:nobody@example.com"
+  # [[params.social]]
+  # name = "email"
+  # url  = "mailto:nobody@example.com"
 
-  [[params.social]]
-    name = "github"
-    url  = "https://github.com/"
+  # [[params.social]]
+  # name = "github"
+  # url  = "https://github.com/"
 
-  [[params.social]]
-    name = "linkedin"
-    url  = "https://www.linkedin.com/"
+  # [[params.social]]
+  # name = "linkedin"
+  # url  = "https://www.linkedin.com/"
 
-  [[params.social]]
-    name = "stackoverflow"
-    url  = "https://www.stackoverflow.com/"
+  # [[params.social]]
+  # name = "stackoverflow"
+  # url  = "https://www.stackoverflow.com/"
 
 [languages]
   [languages.en]
