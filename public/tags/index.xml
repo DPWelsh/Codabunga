@@ -2,63 +2,63 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on CodaBunga</title>
-    <link>https://zen-wing-9660ee.netlify.app/tags/</link>
+    <link>http://codabunga.com/tags/</link>
     <description>Recent content in Tags on CodaBunga</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://zen-wing-9660ee.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Apr 2014 00:00:00 +0000</lastBuildDate><atom:link href="http://codabunga.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>development</title>
-      <link>https://zen-wing-9660ee.netlify.app/tags/development/</link>
+      <link>http://codabunga.com/tags/development/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zen-wing-9660ee.netlify.app/tags/development/</guid>
+      <guid>http://codabunga.com/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>https://zen-wing-9660ee.netlify.app/tags/go/</link>
+      <link>http://codabunga.com/tags/go/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zen-wing-9660ee.netlify.app/tags/go/</guid>
+      <guid>http://codabunga.com/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>https://zen-wing-9660ee.netlify.app/tags/golang/</link>
+      <link>http://codabunga.com/tags/golang/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zen-wing-9660ee.netlify.app/tags/golang/</guid>
+      <guid>http://codabunga.com/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://zen-wing-9660ee.netlify.app/tags/hugo/</link>
+      <link>http://codabunga.com/tags/hugo/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zen-wing-9660ee.netlify.app/tags/hugo/</guid>
+      <guid>http://codabunga.com/tags/hugo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>templates</title>
-      <link>https://zen-wing-9660ee.netlify.app/tags/templates/</link>
+      <link>http://codabunga.com/tags/templates/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zen-wing-9660ee.netlify.app/tags/templates/</guid>
+      <guid>http://codabunga.com/tags/templates/</guid>
       <description></description>
     </item>
     
     <item>
       <title>themes</title>
-      <link>https://zen-wing-9660ee.netlify.app/tags/themes/</link>
+      <link>http://codabunga.com/tags/themes/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zen-wing-9660ee.netlify.app/tags/themes/</guid>
+      <guid>http://codabunga.com/tags/themes/</guid>
       <description></description>
     </item>
     

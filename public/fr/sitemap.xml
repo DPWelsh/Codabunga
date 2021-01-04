@@ -3,150 +3,150 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/</loc>
+    <loc>http://codabunga.com/fr/categories/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/categories/"
+                href="http://codabunga.com/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/categories/"
+                href="http://codabunga.com/fr/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/</loc>
+    <loc>http://codabunga.com/fr/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/"
+                href="http://codabunga.com/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/"
+                href="http://codabunga.com/fr/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/</loc>
+    <loc>http://codabunga.com/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/posts/2014/09/creating-a-new-theme/"
+                href="http://codabunga.com/posts/2014/09/creating-a-new-theme/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/"
+                href="http://codabunga.com/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/hugo/</loc>
+    <loc>http://codabunga.com/fr/categories/hugo/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/</loc>
+    <loc>http://codabunga.com/fr/posts/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/posts/"
+                href="http://codabunga.com/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/posts/"
+                href="http://codabunga.com/fr/posts/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/d%C3%A9buter-avec-hugo/</loc>
+    <loc>http://codabunga.com/fr/posts/2014/04/d%C3%A9buter-avec-hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/posts/2014/04/getting-started-with-hugo/"
+                href="http://codabunga.com/posts/2014/04/getting-started-with-hugo/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/d%C3%A9buter-avec-hugo/"
+                href="http://codabunga.com/fr/posts/2014/04/d%C3%A9buter-avec-hugo/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/go/</loc>
+    <loc>http://codabunga.com/fr/categories/go/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/</loc>
+    <loc>http://codabunga.com/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/posts/2014/04/hugo-template-primer/"
+                href="http://codabunga.com/posts/2014/04/hugo-template-primer/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/"
+                href="http://codabunga.com/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/jekyll/</loc>
+    <loc>http://codabunga.com/fr/categories/jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/</loc>
+    <loc>http://codabunga.com/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/posts/2014/03/migrate-to-hugo-from-jekyll/"
+                href="http://codabunga.com/posts/2014/03/migrate-to-hugo-from-jekyll/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/"
+                href="http://codabunga.com/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/series/</loc>
+    <loc>http://codabunga.com/fr/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/series/"
+                href="http://codabunga.com/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/series/"
+                href="http://codabunga.com/fr/series/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/tags/</loc>
+    <loc>http://codabunga.com/fr/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/tags/"
+                href="http://codabunga.com/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/tags/"
+                href="http://codabunga.com/fr/tags/"
                 />
   </url>
   
