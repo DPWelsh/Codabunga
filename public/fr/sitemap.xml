@@ -3,58 +3,150 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://example.com/fr/categories/</loc>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/categories/"
+                href="https://zen-wing-9660ee.netlify.app/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/categories/"
+                href="https://zen-wing-9660ee.netlify.app/fr/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/fr/</loc>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/"
+                href="https://zen-wing-9660ee.netlify.app/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/"
+                href="https://zen-wing-9660ee.netlify.app/fr/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/fr/series/</loc>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/series/"
+                href="https://zen-wing-9660ee.netlify.app/posts/2014/09/creating-a-new-theme/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/series/"
+                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/09/cr%C3%A9ation-dun-nouveau-th%C3%A8me/"
                 />
   </url>
   
   <url>
-    <loc>https://example.com/fr/tags/</loc>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/hugo/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/</loc>
+    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://example.com/tags/"
+                href="https://zen-wing-9660ee.netlify.app/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://example.com/fr/tags/"
+                href="https://zen-wing-9660ee.netlify.app/fr/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/d%C3%A9buter-avec-hugo/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zen-wing-9660ee.netlify.app/posts/2014/04/getting-started-with-hugo/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/d%C3%A9buter-avec-hugo/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/go/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/</loc>
+    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zen-wing-9660ee.netlify.app/posts/2014/04/hugo-template-primer/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/04/introduction-aux-mod%C3%A8les-hugo/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/</loc>
+    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zen-wing-9660ee.netlify.app/posts/2014/03/migrate-to-hugo-from-jekyll/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://zen-wing-9660ee.netlify.app/fr/posts/2014/03/migrer-vers-hugo-depuis-jekyll/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/series/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zen-wing-9660ee.netlify.app/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://zen-wing-9660ee.netlify.app/fr/series/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://zen-wing-9660ee.netlify.app/fr/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://zen-wing-9660ee.netlify.app/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://zen-wing-9660ee.netlify.app/fr/tags/"
                 />
   </url>
   
