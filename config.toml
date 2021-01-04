@@ -1,4 +1,4 @@
-baseURL = "http://codabunga.com/"
+baseURL = "https://zen-wing-9660ee.netlify.app/"
 title   = "CodaBunga"
 languageCode = "en-us"
 theme = "hello-friend-ng"
