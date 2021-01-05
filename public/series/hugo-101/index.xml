@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate><atom:link href="https://zen-wing-9660ee.netlify.app/series/hugo-101/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://zen-wing-9660ee.netlify.app/series/hugo-101/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gina&#39;s First Project</title>
+      <link>https://zen-wing-9660ee.netlify.app/posts/2021/01/ginas-first-project/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://zen-wing-9660ee.netlify.app/posts/2021/01/ginas-first-project/</guid>
+      <description>Introduction This will be where Gina will write up her first project&amp;hellip;</description>
+    </item>
+    
     <item>
       <title>Creating a New Theme</title>
       <link>https://zen-wing-9660ee.netlify.app/posts/2014/09/creating-a-new-theme/</link>
