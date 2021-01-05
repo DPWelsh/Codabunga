@@ -3,58 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/categories/</loc>
+    <loc>https://codabunga.io/fr/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/categories/"
+                href="https://codabunga.io/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/categories/"
+                href="https://codabunga.io/fr/categories/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/</loc>
+    <loc>https://codabunga.io/fr/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/"
+                href="https://codabunga.io/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/"
+                href="https://codabunga.io/fr/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/series/</loc>
+    <loc>https://codabunga.io/fr/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/series/"
+                href="https://codabunga.io/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/series/"
+                href="https://codabunga.io/fr/series/"
                 />
   </url>
   
   <url>
-    <loc>https://zen-wing-9660ee.netlify.app/fr/tags/</loc>
+    <loc>https://codabunga.io/fr/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://zen-wing-9660ee.netlify.app/tags/"
+                href="https://codabunga.io/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="fr"
-                href="https://zen-wing-9660ee.netlify.app/fr/tags/"
+                href="https://codabunga.io/fr/tags/"
                 />
   </url>
   
