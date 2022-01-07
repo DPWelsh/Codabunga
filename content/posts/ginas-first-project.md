@@ -13,6 +13,7 @@ series:
 ---
 
 
+
 ## Introduction
 
 I’m barely on Reddit these days. However, when I was on Reddit, I found it interesting how different Reddit communities (‘subreddits’) seemed to have distinct flavours in the way users socially contribute to their forum. 
@@ -34,13 +35,7 @@ For this step, I will presume that you’ve already got a version of Python 3 an
 
 At the top of my script, I imported the nltk, praw and pandas libraries since I’d need these later in the script. For the NLTK library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
-import nltk
-from nltk import word_tokenize
-import nltk.data
-from nltk.probability import FreqDist
-from nltk.tag import pos_tag
-import praw
-import pandas as pd
+<img class="special-img-class" src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/import_modules_code" />
 
 
 ## Step 2: Accessing the subreddits 
@@ -81,8 +76,7 @@ This action doesn’t access the actual text from the comments, only the data ob
 
 The result of this was a list of strings that contained the raw text of 300 comments from the selected subreddit.
 
-# return raw text from comments
-
+#return raw text from comments
 def return_comments(community):
   return [comment.body for comment in community]
 
