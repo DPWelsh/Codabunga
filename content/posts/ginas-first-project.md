@@ -22,7 +22,9 @@ I’m barely on Reddit these days. However, when I was on Reddit, I found it int
 ![Reddit Homepage](/Reddit_homepage.png)
 
 
-Since Reddit is a host for a diverse group of communities banded around interests, it would follow that the type of language used in each subreddit would have its own special signature of popular word choices, sentiments, and social dynamics. I knew there would be fascinating ways to analyse and compare the language data of different subreddits. So, I decided to start a project where I’d scrape data from different subreddits and do some linguistic analysis on the comments. I was most interested in comparing the differences between selected subreddits. 
+Since Reddit is a host for a diverse group of communities banded around interests, it would follow that the type of language used in each subreddit would have its own special signature of popular word choices, sentiments, and social dynamics. 
+
+I knew there would be fascinating ways to analyse and compare the language data of different subreddits. So, I decided to start a project where I’d scrape data from different subreddits and do some linguistic analysis on the comments. I was most interested in comparing the differences between selected subreddits. 
 
 For this post, I will make comparisons of word data between two subreddits: 
 
