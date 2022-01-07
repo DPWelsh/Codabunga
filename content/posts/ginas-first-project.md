@@ -18,7 +18,9 @@ series:
 
 I’m barely on Reddit these days. However, when I was on Reddit, I found it interesting how different Reddit communities (‘subreddits’) seemed to have distinct flavours in the way users socially contribute to their forum. 
 
+
 ![Reddit Homepage](/Reddit_homepage.png)
+
 
 Since Reddit is a host for a diverse group of communities banded around interests, it would follow that the type of language used in each subreddit would have its own special signature of popular word choices, sentiments, and social dynamics. I knew there would be fascinating ways to analyse and compare the language data of different subreddits. So, I decided to start a project where I’d scrape data from different subreddits and do some linguistic analysis on the comments. I was most interested in comparing the differences between selected subreddits. 
 
@@ -37,7 +39,9 @@ For this step, I will presume that you’ve already got a version of Python 3 an
 
 At the top of my script, I imported the nltk, praw and pandas libraries since I’d need these later in the script. For the NLTK library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
+
 ![Import modules](/import_modules_code.png)
+
 
 
 ## Step 2: Accessing the subreddits 
@@ -46,12 +50,16 @@ The PRAW API was the element that connected my Python script to the actual Reddi
 
 Once the PRAW elements needed were set up, I used the following code to send a request to Reddit (the ‘XXX’ details will depend on your own user agent details, of course):
 
+
 ![PRAW access code](/praw_access_code.png)
+
 
 
 Next, I had to send up my code to connect to the specific subreddits of /r/antiwork and /r/productivity. I did this through the reddit.subreddit() function, putting the name of the subreddits (‘antiwork’ and ‘productivity’) into the respective parameters.
 
+
 ![Subreddit access code](/access_subreddit_code.png)
+
 
 
 This connected my script to the /r/antiwork and /r/productivity subreddits. Now time for the real fun!
@@ -65,12 +73,16 @@ Submissions to Reddit come in various data formats such as text, images, links, 
 
 I assigned variables to the PRAW comments() function that scraped 300 comments from /r/antiwork and /r/productivity respectively:
 
+
 ![Scrape comments code](/scrape_comments_code.png)
+
 
 
 This action doesn’t access the actual text from the comments, only the data objects. So, to get the actual text from the comments, I wrote a general function that can take raw text (comment.body) from each comment for any selected subreddit:
 
+
 ![Comment body code](/comment_body_code.png)
+
 
 
 The result of this was a list of strings that contained the raw text of 300 comments from the selected subreddit.
@@ -78,7 +90,9 @@ The result of this was a list of strings that contained the raw text of 300 comm
 Then, I applied this function to the 300 sample comments from the two communities:
 
 
+
 ![Corpus code](/corpus_code.png)
+
 
 When I printed one of these variables, the result was a list of 300 raw comment strings scraped from the selected subreddit community (the result below is an example from /r/antiwork): 
 
@@ -141,7 +155,7 @@ I applied this function to the noun and adjective word data in /r/productivity a
 
 So, now I had frequency distributions for nouns and adjectives for both the /r/antiwork and /r/productivity comment data. Now it was time for me to visualise the data and find the most common words in the comments.
 
-Step 6: Plotting the top 20 nouns and adjectives for each subreddit
+## Step 6: Plotting the top 20 nouns and adjectives for each subreddit
 
 Now that I had frequency distributions for the nouns and adjectives in both /r/antiwork and /r/productivity, it was time to see what the top 20 words were in these subreddits.
 
@@ -178,7 +192,7 @@ In both subreddits, the top three adjectives are ‘good’, ‘more’ and ‘o
 
 Overall, this is a problem with using single-word data, as opposed to multiple-word data. It’s hard to discern the connotation associated with adjectives without the surrounding context. Another issue in this frequency analysis is that the sample size of words is smaller for both subreddits – there simply aren’t as many counts per word as what we can see in noun data. For example, the top adjective ‘more’ in /r/antiwork has only 19 counts, whereas the top nouns in both subreddits have over 50 counts). So, think of this adjective data as a fun starting point, rather than a reliable indication of sentiment in these subreddits.
 
-Data collection – a caveat
+## Data collection – a caveat
 
 This part of my project was an interesting peep into how words are used in the two subreddits using a little bit of scraped comment data. However, there are flaws with what I’ve done here. 
 
