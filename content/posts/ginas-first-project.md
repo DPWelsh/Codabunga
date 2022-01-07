@@ -35,7 +35,7 @@ For this step, I will presume that you’ve already got a version of Python 3 an
 
 At the top of my script, I imported the nltk, praw and pandas libraries since I’d need these later in the script. For the NLTK library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
-<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/import_modules_code.png" alt="Import modules"/>
+![Import modules](/import_modules_code.png)
 
 
 ## Step 2: Accessing the subreddits 
@@ -141,8 +141,6 @@ I applied this function to the noun and adjective word data in /r/productivity a
 <img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/freq_dist_code.png" alt="Freq dist code"/>
 
 
-<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/nouns_plot.png" alt="Nouns plot"/>
-
 So, now I had frequency distributions for nouns and adjectives for both the /r/antiwork and /r/productivity comment data. Now it was time for me to visualise the data and find the most common words in the comments.
 
 Step 6: Plotting the top 20 nouns and adjectives for each subreddit
@@ -151,26 +149,13 @@ Now that I had frequency distributions for the nouns and adjectives in both /r/a
 
 I used the pandas library plot() function to plot the top 20 nouns and adjectives for each subreddit:
 
-# PLOTTING TOP 20 GRAPHS
-
-# TOP 20 NOUNS 
-productivity_nouns.plot(20, cumulative=False, title="Top 20 /r/productivity nouns")
-antiwork_nouns.plot(20, cumulative=False, title="Top 20 /r/antiwork nouns")
-
-
-# TOP 20 ADJECTIVES
-
-productivity_adjs.plot(20, cumulative=False, title="Top 20 /r/productivity adjectives")
-antiwork_adjs.plot(20, cumulative=False, title="Top 20 /r/antiwork adjectives")
-
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/nouns_plot.png" alt="Nouns plot"/>
 
 The result of these were a set of graphs that visually plotted the counts of the top 20 words in the subreddit for each part-of-speech as a decreasing frequency distribution.
 
 Let’s have a look at them below!
- 
 
-
-Insight 1: Nouns
+## Insight 1: Nouns
 
 
 
@@ -182,7 +167,7 @@ These insights aren’t too surprising – after all, it’s very much expected 
 
 Overall, looking at the most common nouns that occur in these two contrasting subreddits can give us some indication of the types of things people tend to talk about in these communities.
 
-Insight 2: Adjectives
+## Insight 2: Adjectives
 
 Looking at adjectives in language data can give us an indication of the emotions of users in a subreddit. Some adjectives connotate positive emotions like joy, excitement, and motivation, while other adjectives can denote negative emotions like anger, resentment, and apathy.
 
@@ -205,7 +190,7 @@ One big flaw relates to the PRAW function I used to scrape the comment bodies si
 
 Also, when I ran the script on different days (or even hours), the top 20 words changed each time. Perhaps if I changed the script to only include the top 20 nouns or adjectives from “top comments” rather than any comments (and from “top submissions” rather than any submissions), I could get more generalised data that reflected which words are most favoured in usage in these communities.
 
-Summary
+## Summary
 
 Overall, I had lots of fun finding the top 20 nouns and adjectives for the two subreddits. It was super cool to practise using some powerful Python libraries (PRAW, NLTK, pandas) and to think about the fascinating reasons behind word choice in two very different Reddit communities. 
 
