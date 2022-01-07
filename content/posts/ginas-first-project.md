@@ -15,4 +15,10 @@ series:
 
 ## Introduction
 
-This will be where Gina will write up her first project...
+Project idea: Creating a simple game using Pygame
+
+Game ideas:
+
+- Tetris
+- 2D platform game (collecting items, avoiding baddies)
+

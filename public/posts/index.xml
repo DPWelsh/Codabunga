@@ -15,9 +15,16 @@
             <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
             
             <guid>https://codabunga.io/posts/2021/01/ginas-first-project/</guid>
-            <description>Introduction This will be where Gina will write up her first project&amp;hellip;</description>
+            <description>Introduction Project idea: Creating a simple game using Pygame
+Game ideas:
+ Tetris 2D platform game (collecting items, avoiding baddies)  </description>
             <content type="html"><![CDATA[<h2 id="introduction">Introduction</h2>
-<p>This will be where Gina will write up her first project&hellip;</p>
+<p>Project idea: Creating a simple game using Pygame</p>
+<p>Game ideas:</p>
+<ul>
+<li>Tetris</li>
+<li>2D platform game (collecting items, avoiding baddies)</li>
+</ul>
 ]]></content>
         </item>
         
@@ -845,8 +852,8 @@ $ vi themes/zafta/layouts/_default/single.html
             
             <guid>https://codabunga.io/posts/2014/03/migrate-to-hugo-from-jekyll/</guid>
             <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/▾ images/logo.png should become
-▾ &amp;lt;root&amp;gt;/▾ static/▾ images/logo.png Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
+▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
             <content type="html"><![CDATA[<h2 id="move-static-content-to-static">Move static content to <code>static</code></h2>
 <p>Jekyll has a rule that any directory not starting with <code>_</code> will be copied as-is to the <code>_site</code> output. Hugo keeps all static content under <code>static</code>. You should therefore move it all there.
 With Jekyll, something that looked like</p>
