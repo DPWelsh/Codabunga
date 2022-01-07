@@ -35,7 +35,7 @@ For this step, I will presume that you’ve already got a version of Python 3 an
 
 At the top of my script, I imported the nltk, praw and pandas libraries since I’d need these later in the script. For the NLTK library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
-<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/import_modules_code" alt="Import modules"/>
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/import_modules_code.png" alt="Import modules"/>
 
 
 ## Step 2: Accessing the subreddits 
@@ -44,15 +44,12 @@ The PRAW API was the element that connected my Python script to the actual Reddi
 
 Once the PRAW elements needed were set up, I used the following code to send a request to Reddit (the ‘XXX’ details will depend on your own user agent details, of course):
 
-reddit = praw.Reddit(client_id='XXX’, 
-                     client_secret=’XXX’, \
-                     user_agent=’XXX’)
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/praw_access_code.png" alt="PRAW access code"/>
 
 
 Next, I had to send up my code to connect to the specific subreddits of /r/antiwork and /r/productivity. I did this through the reddit.subreddit() function, putting the name of the subreddits (‘antiwork’ and ‘productivity’) into the respective parameters. 
 
-antiwork = reddit.subreddit('antiwork')
-productivity = reddit.subreddit('productivity')
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/access_subreddit_code.png" alt="Subreddit access code"/>
 
 This connected my script to the /r/antiwork and /r/productivity subreddits. Now time for the real fun!
 
@@ -65,56 +62,40 @@ Submissions to Reddit come in various data formats such as text, images, links, 
 
 I assigned variables to the PRAW comments() function that scraped 300 comments from /r/antiwork and /r/productivity respectively:
 
-# sample 300 comments from each subreddit
-
-antiwork = antiwork.comments(limit=300)
-productivity = productivity.comments(limit=300)
-
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/scrape_comments_code.png" alt="Scrape comments code"/>
 
 
 This action doesn’t access the actual text from the comments, only the data objects. So, to get the actual text from the comments, I wrote a general function that can take raw text (comment.body) from each comment for any selected subreddit:
 
+
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/comment_body_code.png" alt="Comment body code"/>
+
 The result of this was a list of strings that contained the raw text of 300 comments from the selected subreddit.
-
-#return raw text from comments
-def return_comments(community):
-  return [comment.body for comment in community]
-
 
 Then, I applied this function to the 300 sample comments from the two communities:
 
-antiwork_corpus = return_comments(antiwork)
-productivity_corpus = return_comments(productivity)
 
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/corpus_code.png" alt="Corpus code"/>
 
 When I printed one of these variables, the result was a list of 300 raw comment strings scraped from the selected subreddit community (the result below is an example from /r/antiwork): 
 
- 
+ [INSERT IMAGE]
 
 At this point, the raw textual comment data has been pulled from the selected subreddits and put into a list. Each item in this list is a long multi-word string. However, to make sense of data linguistically, we need more than just raw strings of data. We need to tokenize the data, or in other words, split the raw strings up into smaller parts such as words or punctuation. In this way, we can grapple with the linguistically meaningful parts of our data and do some analysis!
 
-Step 4: Words - tokenizing and analysing parts-of-speech 
+## Step 4: Words - tokenizing and analysing parts-of-speech 
 
-  Since I was looking for the top 20 nouns and adjectives in the subreddit communities, it made sense to aim for actual words in my tokenize data (as opposed to sentences or punctuation). 
+Since I was looking for the top 20 nouns and adjectives in the subreddit communities, it made sense to aim for actual words in my tokenize data (as opposed to sentences or punctuation). 
 
 I started off writing a function that used the NLTK tokenize() command. Since I was also looking at all the words in the corpus (not of any specific user comments), I used the “”.join Python command to link all the comments of the corpus words together in one big list (as opposed to a list of lists). I applied this function to the antiwork_corpus and productivity_corpus variables:
 
-# tokenize corpora
 
-def tokenize(community):
-  return word_tokenize("".join(community))
-
-tokenized_antiwork = tokenize(antiwork_corpus)
-tokenized_productivity = tokenize(productivity_corpus)
-
-
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/tokenize_code.png" alt="Tokenize code"/>
 
 I applied the pos_tag() NLTK function to the tokenized data for both subreddits. This would apply a part-of-speech tag (in other words, their linguistic category) to each word in the tokenized list.
 
-# tag corpus words for part of speech
-tagged_antiwork = pos_tag(tokenized_antiwork)
-tagged_productivity = pos_tag(tokenized_productivity)
 
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/pos_tag_code.png" alt="POS tag code"/>
 
 The result of this function was a list of tuples where each tuple had the word and their corresponding part-of-speech tag. You can see some examples in the printed list below:
 
@@ -122,42 +103,24 @@ The result of this function was a list of tuples where each tuple had the word a
 
 So, now I was getting somewhere - I had scraped comments, tokenized the data, and assigned part-of-speech tags to the tokenized data. 
 
-Step 5: Frequency distributions of nouns and adjectives
+## Step 5: Frequency distributions of nouns and adjectives
 
 For this part of the project, I was interested specifically in nouns and adjectives since they would provide more insight into the tone of the subreddits (as opposed to grammatical, functional words like “the” or “an” that don’t provide much meaning or sentiment in themselves). 
 
 The NLTK tag set divides up the general categories of nouns and adjectives into many more sub-categories that reflect more detailed elements such as noun singularity or plurality or whether an adjective is comparative or superlative. You can see the various tags in the table below: 
 
-Part-of-speech	Tag
-Noun (singular)	NN
-Noun (plural)	NNS
-Proper noun (singular)	NNP
-Proper noun (plural)	NNPS
-Adjective	JJ
-Adjective (comparative)	JJR
-Adjective (superlative)	JJS
+
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/pos_tag_table.png" alt="POS TAG TABLE"/>
 
 For what I was looking for (the top 20 nouns and adjectives in a subreddit), I made a pragmatic decision to lump these sub-categories together into the two general categories of nouns and adjectives. The conversions can be seen in the added third column in the table below. 
 
-Part-of-speech	Tag	My POS categorisation
-Noun (singular)	NN	Noun
-Noun (plural)	NNS	Noun
-Proper noun (singular)	NNP	Noun
-Proper noun (plural)	NNPS	Noun
-Adjective	JJ	Adjective
-Adjective (comparative)	JJR	Adjective
-Adjective (superlative)	JJS	Adjective
 
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/pos_recat_table.png" alt="POS retag table"/>
 
 In my code, to re-assign the part-of-speech tags to my more generalised categories, I created lists that lumped the more specific tags together (e.g. ‘NN’ or noun singular or ‘NNPS’ or proper noun plural). 
 
-# PARTS OF SPEECH
 
-# noun singular, noun plural, proper noun singular, proper noun plural
-nouns = ['NN', 'NNS', 'NNP', 'NNPS'] 
-
-# adj, adj comparative, adj superlative
-adjs = ["JJ", "JJR", "JJS"] 
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/pos_list_code.png" alt="pos list code"/>
 
 
 
@@ -167,26 +130,18 @@ Next, I had to generate a frequency distribution of the nouns or adjectives in t
 
 I made a function (freq_words) that used a list comprehension to pull out word forms according to their corresponding part-of-speech tags. 
 
-# retrieve frequencies for words of any part of speech, for any community
 
-def freq_words(community, pos_tag):
-  return nltk.FreqDist([x[0] for x in community if x[1] in pos_tag and len(x[0]) > 2 and x[0] != "https"])
-
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/freq_pos_tag_code.png" alt="Freq pos tag code"/>
 
 In this function, I made sure that the words pulled would be three or more characters long, to filter out punctuation and grammatical words like ‘the’ or ‘an’. I also filtered out the string “https” since this wasn’t a real word but was often found where a user had posted a link to the community. Finally, I selected the surface form of the word (x[0]) to put into my frequency distribution instead of selecting both the surface form and the NLTK tag (e.g. “JJ”) because I thought it would be neater for our data lists to leave out the NLTK sub-category tags.
 
 I applied this function to the noun and adjective word data in /r/productivity and /r/antiwork:
 
-# antiwork frequency distribution (nouns/adjectives)
 
-antiwork_nouns = freq_words(tagged_antiwork, nouns)
-antiwork_adjs = freq_words(tagged_antiwork, adjs)
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/freq_dist_code.png" alt="Freq dist code"/>
 
-# productivity frequency distribution (nouns/adjectives)
 
-productivity_nouns = freq_words(tagged_productivity, nouns)
-productivity_adjs = freq_words(tagged_productivity, adjs)
-
+<img src="/Users/gmwelsh/Dropbox/Writing/Codabunga/Post_1_Images/nouns_plot.png" alt="Nouns plot"/>
 
 So, now I had frequency distributions for nouns and adjectives for both the /r/antiwork and /r/productivity comment data. Now it was time for me to visualise the data and find the most common words in the comments.
 
