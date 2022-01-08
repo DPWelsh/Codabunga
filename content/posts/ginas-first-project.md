@@ -16,7 +16,9 @@ series:
 
 ## Introduction
 
-I’m barely on Reddit these days. However, when I was on Reddit, I found it interesting how different Reddit communities (‘subreddits’) seemed to have distinct flavours in the way users socially contribute to their forum. 
+I’m barely on Reddit these days. 
+
+However, when I was on Reddit, I found it interesting how different Reddit communities (‘subreddits’) seemed to have distinct flavours in the way users socially contribute to their forum. 
 
 
 ![Reddit Homepage](/Reddit_homepage.png)
@@ -39,9 +41,9 @@ In this post, I will explore how I obtained the top 20 nouns and adjectives in /
 
 ## Step 1: Setting up the required Python libraries
 
-For this step, I will presume that you’ve already got a version of Python 3 and whatever IDE you use on your computer. You’ll also need to install NLTK and pandas Python libraries as well as the PRAW API, if you haven’t already - you can find links to each respectively here [LINK], here [LINK] and here [LINK]. 
+For this step, I will presume that you’ve already got a version of Python 3 and whatever IDE you use on your computer. You’ll also need to install <code>nltk</code> and <code>pandas</code> Python libraries as well as the <code>praw</code> API, if you haven’t already - you can find links to each respectively here [LINK], here [LINK] and here [LINK]. 
 
-At the top of my script, I imported the nltk, praw and pandas libraries since I’d need these later in the script. For the NLTK library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
+At the top of my script, I imported the <code>nltk</code>, <code>praw</code> and <code>pandas</code> libraries since I’d need these later in the script. For the <code>nltk</code> library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
     import nltk
     from nltk import word_tokenize
