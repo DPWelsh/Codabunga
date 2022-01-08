@@ -41,10 +41,13 @@ For this step, I will presume that you’ve already got a version of Python 3 an
 
 At the top of my script, I imported the nltk, praw and pandas libraries since I’d need these later in the script. For the NLTK library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
-
-![Import modules](/import_modules_code.png)
-
-
+    import nltk
+    from nltk import word_tokenize
+    import nltk.data
+    from nltk.probability import FreqDist
+    from nltk.tag import pos_tag
+    import praw
+    import pandas as pd
 
 ## Step 2: Accessing the subreddits 
 
