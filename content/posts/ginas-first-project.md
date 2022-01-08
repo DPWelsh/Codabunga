@@ -33,7 +33,9 @@ For this post, I will make comparisons of word data between two subreddits:
 
 I chose these two subreddits for this post since they both relate to the topic of work, but they approach the topic from very different perspectives. They are also both significant communities on Reddit, with /r/productivity having almost 900,000 members at the time of writing and /r/antiwork having 1.5 million “idlers”. So, I made a bet that contrasting the language used in these two communities could lead to some interesting insights.
 
-To start this project, I kept it very simple. My first task focused on word frequency analysis, that is, finding insights from how often certain words appear in a sample of data (e.g. the word “cup” appears 5 times in a sample paragraph). In this post, I will explore how I obtained the top 20 nouns and adjectives in /r/productivity and /r/antiwork. Towards the end, I do a little bit of armchair analysis into why these top nouns and adjectives might occur in the sampled data.
+To start this project, I kept it very simple. My first task focused on word frequency analysis, that is, finding insights from how often certain words appear in a sample of data (e.g. the word “cup” appears 5 times in a sample paragraph). 
+
+In this post, I will explore how I obtained the top 20 nouns and adjectives in /r/productivity and /r/antiwork. Towards the end, I do a little bit of armchair analysis into why these top nouns and adjectives might occur in the sampled data.
 
 ## Step 1: Setting up the required Python libraries
 
@@ -55,19 +57,20 @@ The PRAW API was the element that connected my Python script to the actual Reddi
 
 Once the PRAW elements needed were set up, I used the following code to send a request to Reddit (the ‘XXX’ details will depend on your own user agent details, of course):
 
-
-![PRAW access code](/praw_access_code.png)
-
-
+    # access reddit
+    reddit = praw.Reddit(client_id='8n0q-yj901hEsQ', 
+                     client_secret='UIowXBsxjC-Q2Q9lZ1gVS7960HQ', \
+                     user_agent='Productivity_NLP')
 
 Next, I had to send up my code to connect to the specific subreddits of /r/antiwork and /r/productivity. I did this through the reddit.subreddit() function, putting the name of the subreddits (‘antiwork’ and ‘productivity’) into the respective parameters.
 
+    # assign initalising variables to the four subreddits - connect to them via reddit API
+    antiwork = reddit.subreddit('antiwork')
+    productivity = reddit.subreddit('productivity')
 
-![Subreddit access code](/access_subreddit_code.png)
+This connected my script to the /r/antiwork and /r/productivity subreddits. 
 
-
-
-This connected my script to the /r/antiwork and /r/productivity subreddits. Now time for the real fun!
+Now time for the real fun!
 
 ## Step 3: Collecting the data
 
@@ -78,26 +81,24 @@ Submissions to Reddit come in various data formats such as text, images, links, 
 
 I assigned variables to the PRAW comments() function that scraped 300 comments from /r/antiwork and /r/productivity respectively:
 
-
-![Scrape comments code](/scrape_comments_code.png)
-
-
+    # sample 300 comments from each subreddit
+    antiwork = antiwork.comments(limit=300)
+    productivity = productivity.comments(limit=300)
 
 This action doesn’t access the actual text from the comments, only the data objects. So, to get the actual text from the comments, I wrote a general function that can take raw text (comment.body) from each comment for any selected subreddit:
 
-
-![Comment body code](/comment_body_code.png)
-
-
+    # return raw text from comments
+    def return_comments(community):
+      return [comment.body for comment in community if discord_string not in comment.body]
 
 The result of this was a list of strings that contained the raw text of 300 comments from the selected subreddit.
 
 Then, I applied this function to the 300 sample comments from the two communities:
 
 
-
-![Corpus code](/corpus_code.png)
-
+    # create corpora training data for each subreddit based on top-level comments
+    antiwork_corpus = return_comments(antiwork)
+    productivity_corpus = return_comments(productivity)
 
 When I printed one of these variables, the result was a list of 300 raw comment strings scraped from the selected subreddit community (the result below is an example from /r/antiwork): 
 
@@ -111,17 +112,24 @@ Since I was looking for the top 20 nouns and adjectives in the subreddit communi
 
 I started off writing a function that used the NLTK tokenize() command. Since I was also looking at all the words in the corpus (not of any specific user comments), I used the “”.join Python command to link all the comments of the corpus words together in one big list (as opposed to a list of lists). I applied this function to the antiwork_corpus and productivity_corpus variables:
 
-![Tokenize code](/tokenize_code.png)
+    # tokenize corpora
+
+    def tokenize(community):
+      return word_tokenize("".join(community))
+
+    tokenized_antiwork = tokenize(antiwork_corpus)
+    tokenized_productivity = tokenize(productivity_corpus)
 
 
 I applied the pos_tag() NLTK function to the tokenized data for both subreddits. This would apply a part-of-speech tag (in other words, their linguistic category) to each word in the tokenized list.
 
-![POS tag code](/pos_tag_code.png)
-
+    # tag corpus words for part of speech
+    tagged_antiwork = pos_tag(tokenized_antiwork)
+    tagged_productivity = pos_tag(tokenized_productivity)
 
 The result of this function was a list of tuples where each tuple had the word and their corresponding part-of-speech tag. You can see some examples in the printed list below:
 
- 
+ ![Tagged tuble examples](/tagged_tuple_examples.png)
 
 So, now I was getting somewhere - I had scraped comments, tokenized the data, and assigned part-of-speech tags to the tokenized data. 
 
@@ -140,7 +148,15 @@ For what I was looking for (the top 20 nouns and adjectives in a subreddit), I m
 
 In my code, to re-assign the part-of-speech tags to my more generalised categories, I created lists that lumped the more specific tags together (e.g. ‘NN’ or noun singular or ‘NNPS’ or proper noun plural). 
 
-![POS list code](/pos_list_code.png)
+    # PARTS OF SPEECH
+
+    # noun singular, noun plural, proper noun singular, proper noun plural
+
+    nouns = ['NN', 'NNS', 'NNP', 'NNPS'] 
+
+    # adj, adj comparative, adj superlative
+
+    adjs = ["JJ", "JJR", "JJS"] 
 
 In doing this, I would still be using the sub-categories of the NLTK library to pick up nouns and adjectives in the comment data, but I would be putting the words into more general part-of-speech lists.  
 
@@ -148,15 +164,22 @@ Next, I had to generate a frequency distribution of the nouns or adjectives in t
 
 I made a function (freq_words) that used a list comprehension to pull out word forms according to their corresponding part-of-speech tags. 
 
-![Freq pos tag code](/pos_tag_code.png)
+    # retrieve freqs for nouns & adjectives
 
+    def freq_words(community, pos_tag):
+    return nltk.FreqDist([x[0] for x in community if x[1] in pos_tag and len(x[0]) > 2 and x[0] != "https"])
 
 In this function, I made sure that the words pulled would be three or more characters long, to filter out punctuation and grammatical words like ‘the’ or ‘an’. I also filtered out the string “https” since this wasn’t a real word but was often found where a user had posted a link to the community. Finally, I selected the surface form of the word (x[0]) to put into my frequency distribution instead of selecting both the surface form and the NLTK tag (e.g. “JJ”) because I thought it would be neater for our data lists to leave out the NLTK sub-category tags.
 
 I applied this function to the noun and adjective word data in /r/productivity and /r/antiwork:
 
-![Freq dist code](/freq_dist_code.png)
 
+    # antiwork frequency distribution (nouns/verbs/adjectives)
+    antiwork_nouns = freq_words(tagged_antiwork, nouns) 
+    antiwork_adjs = freq_words(tagged_antiwork, adjs)
+
+    # productivity frequency distribution (nouns/verbs/adjectives)productivity_nouns = freq_words(tagged_productivity, nouns)
+    productivity_adjs = freq_words(tagged_productivity, adjs)
 
 So, now I had frequency distributions for nouns and adjectives for both the /r/antiwork and /r/productivity comment data. Now it was time for me to visualise the data and find the most common words in the comments.
 
@@ -166,8 +189,13 @@ Now that I had frequency distributions for the nouns and adjectives in both /r/a
 
 I used the pandas library plot() function to plot the top 20 nouns and adjectives for each subreddit:
 
-![Nouns plot](/nouns_plot.png)
+    # TOP 20 NOUNS 
+    productivity_nouns.plot(20, cumulative=False, title="Top 20 /r/productivity nouns")
+    antiwork_nouns.plot(20, cumulative=False, title="Top 20 /r/antiwork nouns")
 
+    # TOP 20 ADJECTIVES
+    productivity_adjs.plot(20, cumulative=False, title="Top 20 /r/productivity adjectives")
+    antiwork_adjs.plot(20, cumulative=False, title="Top 20 /r/antiwork adjectives")
 
 The result of these were a set of graphs that visually plotted the counts of the top 20 words in the subreddit for each part-of-speech as a decreasing frequency distribution.
 
