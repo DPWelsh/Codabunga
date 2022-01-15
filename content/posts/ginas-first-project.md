@@ -41,7 +41,7 @@ In this post, I will explore how I obtained the top 20 nouns and adjectives in /
 
 ## Step 1: Setting up the required Python libraries
 
-For this step, I will presume that you’ve already got a version of Python 3 and whatever IDE you use on your computer. You’ll also need to install <code>nltk</code> and <code>pandas</code> Python libraries as well as the <code>praw</code> API, if you haven’t already - you can find links to each respectively here [LINK], here [LINK] and here [LINK]. 
+For this step, I will presume that you’ve already got a version of Python 3 and whatever IDE you use on your computer. You’ll also need to install <code>nltk</code> and <code>pandas</code> Python libraries as well as the <code>praw</code> API, if you haven’t already - you can find links to each respectively [here](https://www.nltk.org/), [here](https://pandas.pydata.org/docs/) and [here](https://praw.readthedocs.io/en/stable/index.html).
 
 At the top of my script, I imported the <code>nltk</code>, <code>praw</code> and <code>pandas</code> libraries since I’d need these later in the script. For the <code>nltk</code> library, I made sure to specifically import the word_tokenize and pos_tag modules, since we’ll be needing this to analyse the words in the language data.
 
