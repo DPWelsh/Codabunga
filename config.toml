@@ -59,7 +59,7 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Welcome to Codabunga"
+  homeSubtitle = ""
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   #
@@ -135,9 +135,9 @@ disableHugoGeneratorInject = false
   name = "github"
   url  = "https://github.com/ginawelsh"
 
-  # [[params.social]]
-  # name = "linkedin"
-  # url  = "https://www.linkedin.com/"
+  [[params.social]]
+  name = "linkedin"
+  url  = "https://www.linkedin.com/in/gina-welsh/"
 
   # [[params.social]]
   # name = "stackoverflow"
