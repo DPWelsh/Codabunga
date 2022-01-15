@@ -55,16 +55,14 @@ At the top of my script, I imported the <code>nltk</code>, <code>praw</code> and
 
 ## Step 2: Accessing the subreddits 
 
-The PRAW API was the element that connected my Python script to the actual Reddit data itself. This is the part that ‘scrapes’ the real data. For this step, I had to install PRAW, set up a Reddit account and a user agent (see THIS LINK for details on how to do this). 
-
-Once the PRAW elements needed were set up, I used the following code to send a request to Reddit (the ‘XXX’ details will depend on your own user agent details, of course):
+The PRAW API was the element that connected my Python script to the actual Reddit data itself. This is the part that ‘scrapes’ the real data. For this step, I had to first [register an application on Reddit](https://www.reddit.com/prefs/apps/). Once this was set up, I used the following code to authenticate my script to access Reddit (the ‘XXX’ details in this code will depend on the user details of your reddit application):
 
     # access reddit
-    reddit = praw.Reddit(client_id='8n0q-yj901hEsQ', 
-                     client_secret='UIowXBsxjC-Q2Q9lZ1gVS7960HQ', \
-                     user_agent='Productivity_NLP')
+    reddit = praw.Reddit(client_id='XXX', 
+                     client_secret='XXX', \
+                     user_agent='XXX')
 
-Next, I had to send up my code to connect to the specific subreddits of /r/antiwork and /r/productivity. I did this through the reddit.subreddit() function, putting the name of the subreddits (‘antiwork’ and ‘productivity’) into the respective parameters.
+Next, I had to assign variables that accessed specific subreddits of /r/antiwork and /r/productivity. I used the reddit.subreddit() function, putting the subreddits (‘antiwork’ and ‘productivity’) into each parameter:
 
     # assign initalising variables to the four subreddits - connect to them via reddit API
     antiwork = reddit.subreddit('antiwork')
@@ -173,10 +171,9 @@ I made a function (<code>freq_words</code>) that used a list comprehension to pu
     def freq_words(community, pos_tag):
     return nltk.FreqDist([x[0] for x in community if x[1] in pos_tag and len(x[0]) > 2 and x[0] != "https"])
 
-In this function, I made sure that the words pulled would be three or more characters long, to filter out punctuation and grammatical words like ‘the’ or ‘an’. I also filtered out the string “https” since this wasn’t a real word but was often found where a user had posted a link to the community. Finally, I selected the surface form of the word (x[0]) to put into my frequency distribution instead of selecting both the surface form and the <code>nltk</code> tag (e.g. “JJ”) because I thought it would be neater for our data lists to leave out the sub-category tags.
+In this function, I made sure that the words pulled would be three or more characters long, to filter out punctuation and grammatical words like ‘the’ or ‘an’. I also filtered out the string “https” since this wasn’t a real word but was often found where a user had posted a link to the community. Finally, I selected the surface form of the word to put into my frequency distribution instead of selecting both the surface form and the <code>nltk</code> tag (e.g. “JJ”). I thought our data plots would be neater without the sub-category tags.
 
 I applied this function to the noun and adjective word data in /r/productivity and /r/antiwork:
-
 
     # antiwork frequency distribution (nouns/verbs/adjectives)
     antiwork_nouns = freq_words(tagged_antiwork, nouns) 
@@ -185,11 +182,11 @@ I applied this function to the noun and adjective word data in /r/productivity a
     # productivity frequency distribution (nouns/verbs/adjectives)productivity_nouns = freq_words(tagged_productivity, nouns)
     productivity_adjs = freq_words(tagged_productivity, adjs)
 
-So, now I had frequency distributions for nouns and adjectives for both the /r/antiwork and /r/productivity comment data. Now it was time for me to visualise the data and find the most common words in the comments.
+So, now I had frequency distributions for nouns and adjectives for both the r/antiwork and r/productivity comment data. Now it was time for me to visualise the data and find the most common words in the comments.
 
 ## Step 6: Plotting the top 20 nouns and adjectives for each subreddit
 
-Now that I had frequency distributions for the nouns and adjectives in both /r/antiwork and /r/productivity, it was time to see what the top 20 words were in these subreddits.
+Now that I had frequency distributions for the nouns and adjectives in both r/antiwork and r/productivity, it was time to see what the top 20 words were in these subreddits.
 
 I used the <code>pandas</code> plot function to plot the top 20 nouns and adjectives for each subreddit:
 
@@ -214,7 +211,7 @@ The top 20 nouns in /r/productivity contained topics related to time (‘time’
 
 Some of the top nouns in this data were related to the concept of time. The top noun lists of /r/antiwork and /r/productivity both had words related to time. However, the temporal words in /r/productivity seemed to relate to an interest in the short-term ('day', 'week') but /r/antiwork seemed to relate to an interest in the long-term ('years', 'time', 'life'). You could say that /r/productivity and /r/antiwork are both interested in time, but /r/productivity users focus on the week-by-week perspective while /r/antiwork users focus on time on a macro scale. 
 
-Another comparison I could make is the use of nouns related to objects as opposed to nouns related to societal systems. The /r/productivity data contained more nouns related to objects (e.g. 'list', 'phone', 'stuff', 'notes') (), while the /r/antiwork data contained more nouns related to people or societal constructs ('people', 'wage', 'living'). This could reflect the tendency of /r/productivity users to seek practical tools to complete their work, /r/antiwork users to be more interested in critically evaluating the systemic issues that exist in their work in the first place.
+Another comparison I could make is the use of nouns related to objects as opposed to nouns related to societal systems. The /r/productivity data contained more nouns related to objects (e.g. 'list', 'phone', 'stuff', 'notes'), while the /r/antiwork data contained more nouns related to people or societal constructs ('people', 'wage', 'living'). This could reflect the tendency of /r/productivity users to seek practical tools to complete their work, /r/antiwork users to be more interested in critically evaluating the systemic issues that exist in their work in the first place.
 
 Overall, looking at the most common nouns that occur in these two contrasting subreddits can give us some indication of the types of things people tend to talk about in these communities.
 
@@ -239,7 +236,7 @@ Also, when I ran the script on different days (or even hours), the top 20 words 
 
 ## Summary
 
-Overall, I had lots of fun finding the top 20 nouns and adjectives for the two subreddits. It was super cool to practise using some powerful Python libraries (PRAW, NLTK, pandas) and to think about the fascinating reasons behind word choice in two very different Reddit communities. 
+Overall, I had lots of fun finding the top 20 nouns and adjectives for the two subreddits. It was super cool to practise using some powerful Python libraries (<code>praw</code>, <code>nltk</code>, <code>pandas</code>) and to think about the fascinating reasons behind word choice in two very different Reddit communities. 
 
 In terms of limitations, I had to keep in mind that my sample size was small and that my script skews my data collection to specific subreddits. I also couldn’t get much out of the adjective data without seeing the surrounding contexts of those adjectives.
 
