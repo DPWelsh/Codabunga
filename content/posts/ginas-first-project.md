@@ -30,14 +30,14 @@ I knew there would be fascinating ways to analyse and compare the language data 
 
 For this post, I will make comparisons of word data between two subreddits: 
 
-1.	/r/productivity, a subreddit that “shares tips and tricks for being more productive”, and 
-2.	/r/antiwork, a subreddit where users are “curious about ending work” and “want to get the most out of a work-free life”
+1.	r/productivity, a subreddit that “shares tips and tricks for being more productive”, and 
+2.	r/antiwork, a subreddit where users are “curious about ending work” and “want to get the most out of a work-free life”
 
-I chose these two subreddits for this post since they both relate to the topic of work, but they approach the topic from very different perspectives. They are also both significant communities on Reddit, with /r/productivity having almost 900,000 members at the time of writing and /r/antiwork having 1.5 million “idlers”. So, I made a bet that contrasting the language used in these two communities could lead to some interesting insights.
+I chose these two subreddits for this post since they both relate to the topic of work, but they approach the topic from very different perspectives. They are also both significant communities on Reddit, with r/productivity having almost 900,000 members at the time of writing and r/antiwork having 1.5 million “idlers”. So, I made a bet that contrasting the language used in these two communities could lead to some interesting insights.
 
 To start this project, I kept it very simple. My first task focused on word frequency analysis, that is, finding insights from how often certain words appear in a sample of data (e.g. the word “cup” appears 5 times in a sample paragraph). 
 
-In this post, I will explore how I obtained the top 20 nouns and adjectives in /r/productivity and /r/antiwork. Towards the end, I do a little bit of armchair analysis into why these top nouns and adjectives might occur in the sampled data.
+In this post, I will explore how I obtained the top 20 nouns and adjectives in r/productivity and r/antiwork. Towards the end, I do a little bit of armchair analysis into why these top nouns and adjectives might occur in the sampled data.
 
 ## Step 1: Setting up the required Python libraries
 
@@ -62,13 +62,13 @@ The PRAW API was the element that connected my Python script to the actual Reddi
                      client_secret='XXX', \
                      user_agent='XXX')
 
-Next, I had to assign variables that accessed specific subreddits of /r/antiwork and /r/productivity. I used the reddit.subreddit() function, putting the subreddits (‘antiwork’ and ‘productivity’) into each parameter:
+Next, I had to assign variables that accessed specific subreddits of r/antiwork and r/productivity. I used the reddit.subreddit() function, putting the subreddits (‘antiwork’ and ‘productivity’) into each parameter:
 
     # assign initalising variables to the four subreddits - connect to them via reddit API
     antiwork = reddit.subreddit('antiwork')
     productivity = reddit.subreddit('productivity')
 
-This connected my script to the /r/antiwork and /r/productivity subreddits. 
+This connected my script to the r/antiwork and r/productivity subreddits. 
 
 Now time for the real fun!
 
@@ -79,7 +79,7 @@ Now that I had access to the subreddits, a question popped into my head. What ty
 
 Submissions to Reddit come in various data formats such as text, images, links, and videos. When I looked at the subreddits with my naked (human) eye, I noticed that a lot of submissions (the contributions created by ‘original poster’ users) were in the image data format. This kind of format was useless for what I was trying to do with my project since I needed actual text to make sense of the data linguistically. As a result, I narrowed the format of my data collection to subreddit comments, since they contained the most raw text that I needed for linguistic analysis. 
 
-I assigned variables to the PRAW comments() function that scraped 300 comments from /r/antiwork and /r/productivity respectively:
+I assigned variables to the <code>PRAW comments()</code> function that scraped 300 comments from r/antiwork and r/productivity respectively:
 
     # sample 300 comments from each subreddit
     antiwork = antiwork.comments(limit=300)
@@ -100,7 +100,7 @@ Then, I applied this function to the 300 sample comments from the two communitie
     antiwork_corpus = return_comments(antiwork)
     productivity_corpus = return_comments(productivity)
 
-When I printed one of these variables, the result was a list of 300 raw comment strings scraped from the selected subreddit community (the result below is an example from /r/antiwork): 
+When I printed one of these variables, the result was a list of 300 raw comment strings scraped from the selected subreddit community (the result below is an example from r/antiwork): 
 
 ![Comment strings](/comment_strings.png)
 
@@ -173,7 +173,7 @@ I made a function (<code>freq_words</code>) that used a list comprehension to pu
 
 In this function, I made sure that the words pulled would be three or more characters long, to filter out punctuation and grammatical words like ‘the’ or ‘an’. I also filtered out the string “https” since this wasn’t a real word but was often found where a user had posted a link to the community. Finally, I selected the surface form of the word to put into my frequency distribution instead of selecting both the surface form and the <code>nltk</code> tag (e.g. “JJ”). I thought our data plots would be neater without the sub-category tags.
 
-I applied this function to the noun and adjective word data in /r/productivity and /r/antiwork:
+I applied this function to the noun and adjective word data in r/productivity and r/antiwork:
 
     # antiwork frequency distribution (nouns/verbs/adjectives)
     antiwork_nouns = freq_words(tagged_antiwork, nouns) 
@@ -191,12 +191,12 @@ Now that I had frequency distributions for the nouns and adjectives in both r/an
 I used the <code>pandas</code> plot function to plot the top 20 nouns and adjectives for each subreddit:
 
     # TOP 20 NOUNS 
-    productivity_nouns.plot(20, cumulative=False, title="Top 20 /r/productivity nouns")
-    antiwork_nouns.plot(20, cumulative=False, title="Top 20 /r/antiwork nouns")
+    productivity_nouns.plot(20, cumulative=False, title="Top 20 r/productivity nouns")
+    antiwork_nouns.plot(20, cumulative=False, title="Top 20 r/antiwork nouns")
 
     # TOP 20 ADJECTIVES
-    productivity_adjs.plot(20, cumulative=False, title="Top 20 /r/productivity adjectives")
-    antiwork_adjs.plot(20, cumulative=False, title="Top 20 /r/antiwork adjectives")
+    productivity_adjs.plot(20, cumulative=False, title="Top 20 r/productivity adjectives")
+    antiwork_adjs.plot(20, cumulative=False, title="Top 20 r/antiwork adjectives")
 
 The result of these were a set of graphs that visually plotted the counts of the top 20 words in the subreddit for each part-of-speech as a decreasing frequency distribution.
 
@@ -207,11 +207,11 @@ Let’s have a look at them below!
 ![Productivity nouns plot](/productivity_nouns_plot.png)
 ![Antiwork nouns plot](/antiwork_nouns_plot.png)
 
-The top 20 nouns in /r/productivity contained topics related to time (‘time’, ‘day’, ‘week’), executive functioning (‘list’, ‘note’/’notes’, ‘habit’, ‘tasks’, ‘calendar’) and objects (‘things’, ‘app’/’apps’, ‘phone’, ‘stuff’). The top 20 nouns in /r/antiwork contained more topics related to people (‘people/person’, ‘someone’) and business and societal systems (‘job’/’jobs’, ‘wage’, ‘work’, ‘money’, ‘company’, ‘business’). 
+The top 20 nouns in r/productivity contained topics related to time (‘time’, ‘day’, ‘week’), executive functioning (‘list’, ‘note’/’notes’, ‘habit’, ‘tasks’, ‘calendar’) and objects (‘things’, ‘app’/’apps’, ‘phone’, ‘stuff’). The top 20 nouns in r/antiwork contained more topics related to people (‘people/person’, ‘someone’) and business and societal systems (‘job’/’jobs’, ‘wage’, ‘work’, ‘money’, ‘company’, ‘business’). 
 
-Some of the top nouns in this data were related to the concept of time. The top noun lists of /r/antiwork and /r/productivity both had words related to time. However, the temporal words in /r/productivity seemed to relate to an interest in the short-term ('day', 'week') but /r/antiwork seemed to relate to an interest in the long-term ('years', 'time', 'life'). You could say that /r/productivity and /r/antiwork are both interested in time, but /r/productivity users focus on the week-by-week perspective while /r/antiwork users focus on time on a macro scale. 
+Some of the top nouns in this data were related to the concept of time. The top noun lists of r/antiwork and r/productivity both had words related to time. However, the temporal words in r/productivity seemed to relate to an interest in the short-term ('day', 'week') but r/antiwork seemed to relate to an interest in the long-term ('years', 'time', 'life'). You could say that r/productivity and r/antiwork are both interested in time, but r/productivity users focus on the week-by-week perspective while r/antiwork users focus on time on a macro scale. 
 
-Another comparison I could make is the use of nouns related to objects as opposed to nouns related to societal systems. The /r/productivity data contained more nouns related to objects (e.g. 'list', 'phone', 'stuff', 'notes'), while the /r/antiwork data contained more nouns related to people or societal constructs ('people', 'wage', 'living'). This could reflect the tendency of /r/productivity users to seek practical tools to complete their work, /r/antiwork users to be more interested in critically evaluating the systemic issues that exist in their work in the first place.
+Another comparison I could make is the use of nouns related to objects as opposed to nouns related to societal systems. The r/productivity data contained more nouns related to objects (e.g. 'list', 'phone', 'stuff', 'notes'), while the r/antiwork data contained more nouns related to people or societal constructs ('people', 'wage', 'living'). This could reflect the tendency of r/productivity users to seek practical tools to complete their work, r/antiwork users to be more interested in critically evaluating the systemic issues that exist in their work in the first place.
 
 Overall, looking at the most common nouns that occur in these two contrasting subreddits can give us some indication of the types of things people tend to talk about in these communities.
 
@@ -222,15 +222,15 @@ Looking at adjectives in language data can give us an indication of the emotions
 ![Antiwork adjs plot](/antiwork_adjectives_plot.png)
 ![Productivity adjs plot](/productivity_adjs_plot.png)
 
-In both subreddits, the top three adjectives are ‘good’, ‘more’ and ‘other’ (with the order of ‘good’ and ‘more’ swapped in /r/antiwork). These are highly frequent words in English that can occur in many contexts. This is a problem if we want to discern the connotation associated with the use of these adjectives. For example, you can use the word “good” to denote a positive emotion, such as “this spaghetti is so good” or “you’re a good egg”. However, you can use the word “good” in sentence constructions with neutral or even negative sentiment, such as “it’s a good indication that things will remain uncertain for a while” or “you’re a good liar, aren’t you?”. This issue arises when using single-word data (as opposed to multiple words or sentences). Overall, it’s hard to discern the connotation associated with adjectives without the surrounding context. 
+In both subreddits, the top three adjectives are ‘good’, ‘more’ and ‘other’ (with the order of ‘good’ and ‘more’ swapped in r/antiwork). These are highly frequent words in English that can occur in many contexts. This is a problem if we want to discern the connotation associated with the use of these adjectives. For example, you can use the word “good” to denote a positive emotion, such as “this spaghetti is so good” or “you’re a good egg”. However, you can use the word “good” in sentence constructions with neutral or even negative sentiment, such as “it’s a good indication that things will remain uncertain for a while” or “you’re a good liar, aren’t you?”. This issue arises when using single-word data (as opposed to multiple words or sentences). Overall, it’s hard to discern the connotation associated with adjectives without the surrounding context. 
 
-Another issue in this frequency analysis is that the sample size of words is smaller for both subreddits – there simply aren’t as many counts per word as what we can see in noun data. For example, the top adjective ‘more’ in /r/antiwork has only 19 counts, whereas the top nouns in both subreddits have over 50 counts). So, think of this adjective data as a fun starting point, rather than a reliable indication of sentiment in these subreddits.
+Another issue in this frequency analysis is that the sample size of words is smaller for both subreddits – there simply aren’t as many counts per word as what we can see in noun data. For example, the top adjective ‘more’ in r/antiwork has only 19 counts, whereas the top nouns in both subreddits have over 50 counts). So, think of this adjective data as a fun starting point, rather than a reliable indication of sentiment in these subreddits.
 
 ## Data collection – a caveat
 
 This part of my project was an interesting peep into how words are used in the two subreddits using a little bit of scraped comment data. However, there are flaws with what I’ve done here. 
 
-One big flaw is that the <code>praw</code> function I used to scrape the comment bodies simply dives into the subreddit and scrapes any comment body until that comment count reaches 300. Depending on how many submissions were made that day, and how long each thread was, the sampled comment data can end up representing only two or three subreddit threads. I think this is why some of the data I plotted was weirdly specific (e.g., the word ‘Japanese’ appearing in the top 20 adjectives in /r/productivity). 
+One big flaw is that the <code>praw</code> function I used to scrape the comment bodies simply dives into the subreddit and scrapes any comment body until that comment count reaches 300. Depending on how many submissions were made that day, and how long each thread was, the sampled comment data can end up representing only two or three subreddit threads. I think this is why some of the data I plotted was weirdly specific (e.g., the word ‘Japanese’ appearing in the top 20 adjectives in r/productivity). 
 
 Also, when I ran the script on different days (or even hours), the top 20 words changed each time. Perhaps if I changed the script to only include the top 20 nouns or adjectives from “top comments” rather than any comments (and from “top submissions” rather than any submissions), I could get more generalised data that reflected which words are most favoured in usage in these communities.
 
