@@ -224,13 +224,15 @@ Looking at adjectives in language data can give us an indication of the emotions
 
 In both subreddits, the top three adjectives are ‘good’, ‘more’ and ‘other’ (with the order of ‘good’ and ‘more’ swapped in r/antiwork). These are highly frequent words in English that can occur in many contexts. This is a problem if we want to discern the connotation associated with the use of these adjectives. For example, you can use the word “good” to denote a positive emotion, such as “this spaghetti is so good” or “you’re a good egg”. However, you can use the word “good” in sentence constructions with neutral or even negative sentiment, such as “it’s a good indication that things will remain uncertain for a while” or “you’re a good liar, aren’t you?”. This issue arises when using single-word data (as opposed to multiple words or sentences). Overall, it’s hard to discern the connotation associated with adjectives without the surrounding context. 
 
-Another issue in this frequency analysis is that the sample size of words is smaller for both subreddits – there simply aren’t as many counts per word as what we can see in noun data. For example, the top adjective ‘more’ in r/antiwork has only 19 counts, whereas the top nouns in both subreddits have over 50 counts). So, think of this adjective data as a fun starting point, rather than a reliable indication of sentiment in these subreddits.
+Another issue in this frequency analysis is that the sample size of words is smaller for both subreddits – there simply aren’t as many counts per word as what we can see in noun data. For example, the top adjective ‘more’ in r/antiwork has only 19 counts, whereas the top nouns in both subreddits have over 50 counts. 
+
+So, I would think of this adjective data as a fun starting point to think about the sentiment in these subreddits, rather than a reliable indication of it.
 
 ## Data collection – a caveat
 
-This part of my project was an interesting peep into how words are used in the two subreddits using a little bit of scraped comment data. However, there are flaws with what I’ve done here. 
+This part of my project was a peep into how words are used in the two subreddits using a little bit of scraped comment data. However, there are flaws with what I’ve done here. 
 
-One big flaw is that the <code>praw</code> function I used to scrape the comment bodies simply dives into the subreddit and scrapes any comment body until that comment count reaches 300. Depending on how many submissions were made that day, and how long each thread was, the sampled comment data can end up representing only two or three subreddit threads. I think this is why some of the data I plotted was weirdly specific (e.g., the word ‘Japanese’ appearing in the top 20 adjectives in r/productivity). 
+One major flaw is that the <code>praw</code> function I used to scrape the comment bodies simply dives into the subreddit and scrapes any comment body until that comment count reaches 300. Depending on how many submissions were made that day, and how long each thread was, the sampled comment data can end up representing only two or three subreddit threads. I think this is why some of the data I plotted was weirdly specific (e.g., the word ‘Japanese’ appearing in the top 20 adjectives in r/productivity). 
 
 Also, when I ran the script on different days (or even hours), the top 20 words changed each time. Perhaps if I changed the script to only include the top 20 nouns or adjectives from “top comments” rather than any comments (and from “top submissions” rather than any submissions), I could get more generalised data that reflected which words are most favoured in usage in these communities.
 
