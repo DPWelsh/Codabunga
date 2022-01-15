@@ -1,5 +1,5 @@
 baseURL = "https://codabunga.io"
-title   = "CodaBunga"
+title   = "Codabunga"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 
@@ -59,7 +59,7 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Welcome to CodaBunga"
+  homeSubtitle = "Welcome to Codabunga"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   #
@@ -89,7 +89,7 @@ disableHugoGeneratorInject = false
 
   # Default theme "light" or "dark"
   #
-  defaultTheme = "dark"
+  defaultTheme = "light"
   themeColor = "#252627"
 
   # Custom footer 
@@ -131,9 +131,9 @@ disableHugoGeneratorInject = false
   # name = "email"
   # url  = "mailto:nobody@example.com"
 
-  # [[params.social]]
-  # name = "github"
-  # url  = "https://github.com/"
+  [[params.social]]
+  name = "github"
+  url  = "https://github.com/ginawelsh"
 
   # [[params.social]]
   # name = "linkedin"
