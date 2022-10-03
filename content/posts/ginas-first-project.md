@@ -2,11 +2,11 @@
 author:
   name: "Gina Welsh"
 date: 2022-01-07
-linktitle: Analysing Reddit language using the NLTK package (Part 1)
+linktitle: Reddit and language data part 1 - Analysing text
 type:
 - post
 - posts
-title: Analysing Reddit language using the NLTK package (Part 1)
+title: Analysing Reddit language using the NLTK package
 weight: 10
 series:
 - Hugo 101
