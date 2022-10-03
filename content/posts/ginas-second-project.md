@@ -6,7 +6,7 @@ linktitle: Reddit and language data part 2 - Generating text
 type:
 - post
 - posts
-title: Generating Reddit language using the NLTK package 
+title: Reddit and language data part 2 - Generating text
 weight: 10
 series:
 - Hugo 101
@@ -18,13 +18,11 @@ In this post, I’ll show you how I wrote a Python script to generate text using
 
 For my second project on this site, I wanted to learn to go beyond simply analysing language data on Reddit – I wanted to learn how to generate it. 
 
-I thought that a good first foray into language generation would be to:
+![Reddit Homepage](/Reddit_homepage.png)
 
-1) take user comment data from a Reddit community (‘subreddit’), 
-2) create a language model from the linguistic patterns of that data, and then
-3) generate new text from those patterns. 
+I thought that a good first foray into language generation would be to take user comment data from a Reddit community (‘subreddit’), create a language model from the linguistic patterns of that data, and then generate new text from those patterns. 
 
-Ideally, for (3), I would be able to generate a “comment” from that model – say, twenty to fifty words long - that would mimic a ‘typical’ contribution to that subreddit. I chose two subreddits that seem completely opposed to each other in their users’ belief systems: r/skeptic and r/psychic. I took these two communities as sources of data because I was curious to see how the ethos and communication patterns in these two internet hubs might come out differently as the output of the language model.
+Ideally, I would be able to generate a “comment” from that model – say, twenty to fifty words long - that would mimic a ‘typical’ contribution to that subreddit. I chose two subreddits that seem completely opposed to each other in their users’ belief systems: r/skeptic and r/psychic. I took these two communities as sources of data because I was curious to see how the ethos and communication patterns in these two internet hubs might come out differently as the output of the language model.
 
 So, I established a goal: to write a program to generate strings that mimic the language of commenters on r/skeptic and r/psychic.
 
@@ -76,6 +74,8 @@ So, a basic language model that predicts the next word in a sentence must go bey
 ## 4.	Bigrams: calculating the probability of a sentence
 
 To generate a sentence, you need to be able to predict the next word based on the probability that a particular word would occur. There are a few ways of going about this. However, a simple model to start with is the bigram language model.
+
+
 
 The bigram language model calculates probabilities of each word occurring sentence based on the probability of that particular word occurring after the previous one in the sentence. It segregates sentences into pairs of words occurring immediately adjacent to each other and makes calculations based on this pairing-off.
 

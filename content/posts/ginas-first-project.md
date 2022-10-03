@@ -6,7 +6,7 @@ linktitle: Reddit and language data part 1 - Analysing text
 type:
 - post
 - posts
-title: Analysing Reddit language using the NLTK package
+title: Reddit and language data part 1 - Analysing text
 weight: 10
 series:
 - Hugo 101
