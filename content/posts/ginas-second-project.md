@@ -77,7 +77,7 @@ To generate a sentence, you need to be able to predict the next word based on th
 
 
 
-The bigram language model calculates probabilities of each word occurring sentence based on the probability of that particular word occurring after the previous one in the sentence. It segregates sentences into pairs of words occurring immediately adjacent to each other and makes calculations based on this pairing-off.
+The bigram language model calculates probabilities of each word occurring in a sentence, based on the probability of that particular word occurring after the previous word in the sentence. It segregates sentences into pairs of words that occur next to each other, and makes calculations based on these pairing patterns.
 
 Let’s take the full sentence example: “Could you please turn the light off”. If that partial sentence were divided up into adjacent word pairs, it would be divided into six sections, like below:
 
