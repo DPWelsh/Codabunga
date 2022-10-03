@@ -354,7 +354,7 @@ Afterwards, I tested out the results with the bigram model and after implementin
 
 ![table comparing results of psychic and skeptic](/psychic-skeptic-output-table.png)
 
-The bigram output is easier to read than the unigram output because two-word collocations are now accounted for. However, there are some other elements at play that are preventing the generated comments from looking realistic.
+The bigram output is easier to read than the unigram output because word context is now accounted for. However, there are some other elements at play that are preventing the generated comments from looking realistic.
 
 The main limitation is in the way the generated comments flow on the sentence level. If you segmented the comments into sections of two words each, each section would make sense. Take for example the generated sentence “Vote for the Church covered, and Harris where nutters are eating like I'd be removed Stores that classic CJD”. If you split this sentence up into sections of word pairs, each word pair looks realistic: “Vote for”, “the Church”, “are eating”, “I’d be”, et cetera. However, when you string the entire sentence together, it does not flow smoothly at all, and it makes little sense.
 
