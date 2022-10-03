@@ -59,7 +59,7 @@ Let’s imagine a scenario where a person is sitting with a deck of 200 cards in
 
 The person picks out one card at a time and lays out each card out on a line from left to right.  The player picks out fifty cards one by one, and at the end, she has a line of cards that spell out words – a fifty-word ‘string’. Some words appear much more often than other words do. For example, the word “the” appears fifteen times in the fifty-word string, the pronoun “you” appears seven times, “think” appears five times, and “would” appears twice. The fifty-word string she picks out (i.e., “generates”) ends up being nonsensical:
 
-    The think coming would angry the are you break think would the hold the had you think the party the asks you she think the under the you the bags the castle the take board you the that you deals the strike concisely you independent the think the has present
+![unigram example](/unigram-example.png)
 
 The 200-card deck (i.e., the ‘language model’) had the cards for the player to pick from, but it didn’t have any context for which cards make more sense when they appear alongside each other when the player puts them down. So, the player must be able to predict which card is most likely to come next, given the cards that have just been put down. 
 
@@ -111,7 +111,7 @@ By extracting natural language data from a language corpus, you can start creati
 
 The table below shows how bigrams and word frequencies relate. The frequencies of specific words occurring adjacent to other words are set out along the x- and y-axis.
 
-[!bigram table example](/9222_sentences.png)
+![bigram table example](/9222_sentences.png)
 
 You can see that in the bigram data, certain words occur much more frequently than others. Out of the sample of 9222 sentences taken from a British telephone conversation data corpus, “I” is paired with “want” 827 times, “to” and “eat” 686 times, “to” and “spend” 211 times, and “Chinese food” 82 times. Using this data, you can assign probabilities based on the number of times those bigrams appear out of all the possible bigrams in the language corpus data. In the example above, quite a few bigrams never occur. For instance, “eat I” doesn’t occur in the sample at all, and neither does “spend want”, “lunch Chinese”, nor “eat want”. These bigrams are assigned probabilities of 0, in the crude way we're defining here. In the real world, they would not be assigned probabilities of 0 – check out [Laplace smoothing](https://technewsiit.com/laplace-smoothing-and-naive-bayes-algorithm) if you’re curious as to why.
 
@@ -172,7 +172,7 @@ Above is a screenshot of the first several lines of the r/skeptic corpus text fi
 
 ### 5.2 Gathering frequency values
 
-Now that I had substantial data batches (“corpora”) for the two subreddits, it was time to organise the language data into bigrams and frequency distributions. This would enable the bigram language model to calculate the probabilities of different bigrams appearing in the comment data. For this task, I used the NLTK modules ‘ngrams’, ‘word_tokenize’, ‘sent_tokenize’ and ‘FreqDist’, and I imported my scrape_data function from my script in 5.1.
+Now that I had substantial data batches (“corpora”) for the two subreddits, it was time to organise the language data into bigrams and frequency distributions. This would enable the bigram language model to calculate the probabilities of different bigrams appearing in the comment data. For this task, I used the <code>nltk</code> modules <code>ngrams</code>, <code>word_tokenize</code>, <code>sent_tokenize</code> and <code>FreqDist</code>. I also imported the <code>scrape_data</code> function from my earlier comment-scraping script.
 
     import random
     from nltk import ngrams
