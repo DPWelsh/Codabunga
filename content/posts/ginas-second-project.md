@@ -34,13 +34,13 @@ Let’s look at the characteristics of the r/skeptic and r/psychic subreddits.
 
 The r/skeptic community is built upon the shared goal of ‘generating discussion in the spirit of scientific skepticism.’ The definition they give for this term is ‘the practice of questioning whether claims are supported by empirical research and have reproducibility’. At the time of writing, r/skeptic had just over 163,000 Reddit users subscribed to the forum.
 
-![skeptic homepage]
+![skeptic homepage](/skeptic-home-page.png)
 
 A quick eyeball at the posts of r/skeptic reveals posts that often refer directly to media publications outside of Reddit, such as an anti-vaccine article published on an ‘alternative news’ site. The comment replies to the post are often critical, analytical, and full of quotes or paraphrases from figures of authority, just as you’d expect from a ‘sceptical’ community. 
 
 The second subreddit of my project, r/psychic, had a member count of just over 226,000 at the time of writing. It is dedicated to those interested in the belief of ‘extrasensory perception’. 
 
-[psychic subreddit homepage]
+![psychic subreddit homepage](/psychic-homepage.png)
 
 The submissions in r/psychic are full of passionate, emotional descriptions of encounters with spirit guides, ghosts, and angels. Overall, the subreddit emphasises self-expression, speculation and validation of the subjective experience in the users’ contributions to the community. 
 
@@ -111,6 +111,8 @@ By extracting natural language data from a language corpus, you can start creati
 
 The table below shows how bigrams and word frequencies relate. The frequencies of specific words occurring adjacent to other words are set out along the x- and y-axis.
 
+[!bigram table example](/9222_sentences.png)
+
 You can see that in the bigram data, certain words occur much more frequently than others. Out of the sample of 9222 sentences taken from a British telephone conversation data corpus, “I” is paired with “want” 827 times, “to” and “eat” 686 times, “to” and “spend” 211 times, and “Chinese food” 82 times. Using this data, you can assign probabilities based on the number of times those bigrams appear out of all the possible bigrams in the language corpus data. In the example above, quite a few bigrams never occur. For instance, “eat I” doesn’t occur in the sample at all, and neither does “spend want”, “lunch Chinese”, nor “eat want”. These bigrams are assigned probabilities of 0, in the crude way we're defining here. In the real world, they would not be assigned probabilities of 0 – check out [Laplace smoothing](https://technewsiit.com/laplace-smoothing-and-naive-bayes-algorithm) if you’re curious as to why.
 
 These bigram probabilities can be used in language generation to pick out what the next word would likely be in a sentence, given the last word that has been generated in the sequence so far.
@@ -130,7 +132,7 @@ Let’s have a look at how you could implement the bigram model using Python and
 
 The first step in creating the comment generator was to create two “corpora” – one language corpus for r/skeptic, and another for r/psychic. These would act as data batches from which the frequencies of bigrams would be derived. From those frequencies, the bigram language model can be built to assign probabilities to words occurring next to one another in pairs. For this step, I would have to connect to the two subreddits directly and scrape comment data from the users contributing to these forums. 
 
-I used the praw API to connect to the two subreddits. For this step, I had to [register an application on Reddit](https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps%2F). Once this was set up, I used the following code to authorise my Python script to programmatically access the Reddit site. Note that the client_id, client_secret, and user_agent parameters would be different for someone else connecting to Reddit, so I’ve just placed “XXXXXX” in the values for these parameters. 
+I used the <code>praw</code> API to connect to the two subreddits. For this step, I had to [register an application on Reddit](https://www.reddit.com/login/?dest=https%3A%2F%2Fwww.reddit.com%2Fprefs%2Fapps%2F). Once this was set up, I used the following code to authorise my Python script to programmatically access the Reddit site. Note that the <code>client_id</code>, <code>client_secret</code>, and <code>user_agent</code> parameters would be different for someone else connecting to Reddit, so I’ve just placed <code>“XXXXXX”</code> in the values for these parameters. 
 
     import praw
     from praw.models import MoreComments
@@ -146,7 +148,7 @@ Next, I created separate ‘psychic’ and ‘skeptic’ subreddit data objects.
     psychic = reddit.subreddit('psychic')
     skeptic = reddit.subreddit('skeptic')
 
-Then, I wrote a function ‘scrape_comments’ that would trawl through the comments of the newest 200 submissions of the two subreddits (that is, newest at the time the script is run). Then, the function would store these comments to two text files for each subreddit, acting as data batches for the two subreddits. 
+Then, I wrote a function <code>scrape_comments</code> that would trawl through the comments of the newest 200 submissions of the two subreddits (that is, newest at the time the script is run). Then, the function would store these comments to two text files for each subreddit, acting as data batches for the two subreddits. 
 
     def scrape_comments(sub):
         for submission in sub.new(limit=200):
@@ -164,9 +166,9 @@ I applied the function to the r/psychic and r/skeptic data objects so that I wou
 
 I ran the scripts many times to build up each corpus text file to contain 20,000 words from r/skeptic and r/psychic, respectively. 
 
-![screenshot of skeptic data store]
+![screenshot of skeptic data store](/skeptic-data-store-text.png)
 
-In italics - A screenshot of the first several lines of the r/skeptic corpus text file. 
+Above is a screenshot of the first several lines of the r/skeptic corpus text file. 
 
 ### 5.2 Gathering frequency values
 
@@ -182,7 +184,7 @@ Now that I had substantial data batches (“corpora”) for the two subreddits, 
     from scrape_data import skeptic
 
   
-Next, I wrote a function ‘collect_data’ that would take the data from the batch files and created test data objects, ‘test_data_psychic’ and ‘test_data_skeptic’, to pull data from the text files of the two corpora.
+Next, I wrote a function <code>collect_data</code> that would take the data from the batch files and created test data objects, <code>test_data_psychic</code> and <code>test_data_skeptic</code>, to pull data from the text files of the two corpora.
 
     def collect_data(sub):
         data_collection = []
@@ -198,7 +200,7 @@ Next, I wrote a function ‘collect_data’ that would take the data from the ba
 
 At this point, we have lots of comment strings as data in our r/skeptic and r/psychic stores. However, we cannot linguistically analyse these strings without applying the tokenization method to them. Tokenizing our comment data will allow our script to process the data as separate words and sentences, rather than a random array of characters. It’s an essential step to working with bigrams, as the program would be able to recognize words within a string, and therefore process them as separate entities next to one another. 
 
-In my script, I applied a word tokenization function from nltk (word_tokenize) as well as their sentence tokenisation function (sent_tokenize) to both the r/skeptic and r/psychic data. I applied both forms of tokenization so that the script would be able to recognize separate words as well as the start and end of each sentence in the comment data. 
+In my script, I applied a word tokenization function from <code>nltk</code> (<code>word_tokenize</code>) as well as their sentence tokenisation function (<code>sent_tokenize</code>) to both the r/skeptic and r/psychic data. I applied both forms of tokenization so that the script would be able to recognize separate words as well as the start and end of each sentence in the comment data. 
 
 
     skeptic_tokens = [word_tokenize(w) for w in sent_tokenize(str(test_data_skeptic))]
@@ -209,7 +211,7 @@ In my script, I applied a word tokenization function from nltk (word_tokenize) a
 
 Now, it was time to create the bigrams! 
 
-I defined a function ‘get_bigrams’ that would create a list of bigrams with padding symbols to indicate the start (“<s>”) and the end (“</s>”) of a sentence. I wanted to make these symbols overt in the data, so that it was easy to pick out the most common first and last words of sentences in the language data. This way, the model would be better at guessing realistic first and last words while generating a sentence. 
+I defined a function <code>get_bigrams</code> that would create a list of bigrams with padding symbols to indicate the start (“<s>”) and the end (“</s>”) of a sentence. I wanted to make these symbols overt in the data, so that it was easy to pick out the most common first and last words of sentences in the language data. This way, the model would be better at guessing realistic first and last words while generating a sentence. 
 
 
     def get_bigrams(token_data):
@@ -228,7 +230,7 @@ Next, I created a frequency distribution of bigrams occurring in the r/skeptic a
     freq_skeptic = FreqDist(filter_bigrams(bigrams_skeptic))
 
 
-Lastly, I wanted a separate list of any words that occur as the first word of a sentence in the data. If a word occurred immediately after the start padding symbol ‘<s>’, then the word’s bigram was added to this list.  
+Lastly, I wanted a separate list of any words that occur as the first word of a sentence in the data. If a word occurred immediately after the start padding symbol, then the word’s bigram was added to this list.  
 
 
     # filter out start tokens in frequency data
@@ -243,7 +245,7 @@ Lastly, I wanted a separate list of any words that occur as the first word of a 
     # create starting token list for r/skeptic
     starting_tokens_skeptic = start_tokens_lst(freq_skeptic)
 
-So, I had the frequencies of each bigram in the language data for both subreddits as well as a separate list of ‘start’ words in the data that occur as the first word of any sentences. These start words were extracted from bigrams where the first item of the bigram was the starting token ‘<s>’, indicating the start of a sentence.
+So, I had the frequencies of each bigram in the language data for both subreddits as well as a separate list of ‘start’ words in the data that occur as the first word of any sentences. These start words were extracted from bigrams with the first item of the bigram being the start word token. The second item of this bigram would be a word that occurs at the start of at least one sentence in the corpus data.
 
     [('<s>', 'If'), ('<s>', 'Brilliant'), ('<s>', 'This'), ('<s>', 'They'), ('<s>', 'I'), ('<s>', 'From'), ('<s>', 'Hypotheses'), ('<s>', 'Nice'), ('<s>', 'Simple'), ('<s>', 'As')]
 
@@ -315,7 +317,7 @@ If the counter was sitting on an odd number, then the next word would be chosen 
 
 I chose this method because I wanted the generated comments to reflect highly frequent words in the data, as well as less frequent words occurring in the data. In real life, speakers of a language don’t always choose the most frequent words, especially if it’s in a context of social expression or critique – instead, they are likely to choose a combination of highly frequent words and less frequent words. So, my counter loop would have half the words chosen based on the maximum probability of that word’s position, and the other half chosen randomly.
 
-Each time this loop would run, I would append the bigram of the newly generated word to the ‘string’ tuple (string = string + append_item), which would help build up the sentence string. Then, I set a conditional for the ‘last_word’ variable. If the last generated word occurs before an end token (‘</s>’), indicating that it occurs as the last word of a sentence, then I would generate a new start word as the ‘last_word’. Doing so would start a new sentence for the next part of the comment string. If the most recently generated word does not occur before an end token, then the ‘last_word’ would be updated to be its bigram. In this way, I could make a comment string that has several sentences.
+Each time this loop would run, I would append the bigram of the newly generated word to the ‘string’ tuple (string = string + append_item), which would help build up the sentence string. Then, I set a conditional for the ‘last_word’ variable. If the last generated word occurs before an end token ("</s>"), indicating that it occurs as the last word of a sentence, then I would generate a new start word as the ‘last_word’. Doing so would start a new sentence for the next part of the comment string. If the most recently generated word does not occur before an end token, then the ‘last_word’ would be updated to be its bigram. In this way, I could make a comment string that has several sentences.
 
     string = string + append_item
     if append_item[1] == '</s>':
@@ -350,7 +352,7 @@ The text in the output of the unigram model is very strange. It shows some commo
 
 Afterwards, I tested out the results with the bigram model and after implementing the generation function ‘generate_string_by_freq’ outlined in section 5. The results of that are listed in the table below, containing five examples from the two subreddits. The data from the two r/psychic and r/skeptic corpora were put through the same function, but they generated different ‘moods’ based on the language that real commenters use in the communities.
 
-![table comparing results of psychic and skeptic]
+![table comparing results of psychic and skeptic](/psychic-skeptic-output-table.png)
 
 The bigram output is easier to read than the unigram output because two-word collocations are now accounted for. However, there are some other elements at play that are preventing the generated comments from looking realistic.
 
@@ -360,7 +362,7 @@ The bigram data has helped with some of the comments’ realism, in that the gra
 
 That being said, the comments show some mimicry of user comments in the two subreddits. It gives some clues as the overall sentiment of contributions to the communities. Let’s pick out a specific contrasting pair:
 
-![psychic vs skeptic table one example]
+![psychic vs skeptic table one example](/psychic-skeptic-one-example.png)
 
 Many of the r/psychic comment strings focus on subjective experience, a pattern indicated by frequently generated 1st person pronouns (‘I’, ‘we’, ‘my’) alongside nouns that focus on personal experience and emotion (‘discovery’, ‘attachment’). On the other hand, the comment strings generated with the r/skeptic data employ more 3rd person pronouns and referents (‘they’, ‘kids’), indicating that the users are often talking about groups outside of themselves as subject matter. I also noticed that the r/skeptic comments made many more references to specific world events, such as COVID-19, the AIDS crisis, US elections, or anti-vaxxer protests. In contrast, the r/psychic comments made less reference to particular global incidents or points of history. Instead, the subject matter was often of a more generalised spiritual nature, such as the concepts of ‘déjà vu’, ‘manifestation’, or ‘free will’.  These differences in subject matter reflect the dissimilarities of the two subreddits – one is focused on personal and generalised human experiences, whereas the other aims to break down specific global events while striving for a ‘third-person’ lens.
 
