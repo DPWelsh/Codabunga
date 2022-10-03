@@ -211,7 +211,7 @@ In my script, I applied a word tokenization function from <code>nltk</code> (<co
 
 Now, it was time to create the bigrams! 
 
-I defined a function <code>get_bigrams</code> that would create a list of bigrams with padding symbols to indicate the start (“<s>”) and the end (“</s>”) of a sentence. I wanted to make these symbols overt in the data, so that it was easy to pick out the most common first and last words of sentences in the language data. This way, the model would be better at guessing realistic first and last words while generating a sentence. 
+I defined a function <code>get_bigrams</code> that would create a list of bigrams with padding symbols to indicate the start (<code><s></code>) and the end (<code></s></code>) of a sentence. I wanted to make these symbols overt in the data, so that it was easy to pick out the most common first and last words of sentences in the language data. This way, the model would be better at guessing realistic first and last words while generating a sentence. 
 
 
     def get_bigrams(token_data):
@@ -253,7 +253,7 @@ With this kind of information, I could get started on creating the function that
 
 ## 5.3. Generating the comments
 
-I wrote a function generate_start_token that uses the in-built Python function random.choice(). This function randomly picks out a word from the list of ‘start’ words that occur in the language corpus. The word randomly picked would be (suitably) the first word in my generated sentence. 
+I wrote a function <code>generate_start_token</code> that uses the in-built Python function <code>random.choice()</code>. This function randomly picks out a word from the list of ‘start’ words that occur in the language corpus. The word randomly picked would be (suitably) the first word in my generated sentence. 
 
     # return random starting token from starting token list (as first word)
     def generate_start_token(starting_tokens):
@@ -296,7 +296,7 @@ Let’s break this one down.
     string = start
     last_word = start
 
-First, I had a start word randomly picked using the generate_start_token function. This would give us our first word in the sentence. Then, I created a variable ‘string’ that assigned that first word as its value. I also created that first word as the value of a variable ‘update’. The ‘last_word’ variable is the last word that has been assigned to the string within the function loop. This will keep being updated as more words get added to the string.
+First, I had a start word randomly picked using the generate_start_token function. This would give us our first word in the sentence. Then, I created a variable <code>string</code> that assigned that first word as its value. I also created that first word as the value of a variable <code>last_word</code>. The ‘last_word’ variable is the last word that has been assigned to the string within the function loop. This will keep being updated as more words get added to the string.
 
 Next, I assigned a counter to the function that dictates how many words the script would add to the string. I set the initial counter value at twenty, so that the number of words in my string would be twenty.
 
@@ -317,7 +317,7 @@ If the counter was sitting on an odd number, then the next word would be chosen 
 
 I chose this method because I wanted the generated comments to reflect highly frequent words in the data, as well as less frequent words occurring in the data. In real life, speakers of a language don’t always choose the most frequent words, especially if it’s in a context of social expression or critique – instead, they are likely to choose a combination of highly frequent words and less frequent words. So, my counter loop would have half the words chosen based on the maximum probability of that word’s position, and the other half chosen randomly.
 
-Each time this loop would run, I would append the bigram of the newly generated word to the ‘string’ tuple (string = string + append_item), which would help build up the sentence string. Then, I set a conditional for the ‘last_word’ variable. If the last generated word occurs before an end token ("</s>"), indicating that it occurs as the last word of a sentence, then I would generate a new start word as the ‘last_word’. Doing so would start a new sentence for the next part of the comment string. If the most recently generated word does not occur before an end token, then the ‘last_word’ would be updated to be its bigram. In this way, I could make a comment string that has several sentences.
+Each time this loop would run, I would append the bigram of the newly generated word to the ‘string’ tuple (string = string + append_item), which would help build up the sentence string. Then, I set a conditional for the ‘last_word’ variable. If the last generated word occurs before an end token symbol, indicating that it occurs as the last word of a sentence, then I would generate a new start word as the <code>last_word</code>. Doing so would start a new sentence for the next part of the comment string. If the most recently generated word does not occur before an end token, then the ‘last_word’ would be updated to be its bigram. In this way, I could make a comment string that has several sentences.
 
     string = string + append_item
     if append_item[1] == '</s>':
