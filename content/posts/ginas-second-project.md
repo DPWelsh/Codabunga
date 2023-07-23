@@ -211,7 +211,7 @@ In my script, I applied a word tokenization function from <code>nltk</code> (<co
 
 Now, it was time to create the bigrams! 
 
-I defined a function <code>get_bigrams</code> that would create a list of bigrams with padding symbols to indicate the start (<code><s></code>) and the end (<code></s></code>) of a sentence. I wanted to make these symbols overt in the data, so that it was easy to pick out the most common first and last words of sentences in the language data. This way, the model would be better at guessing realistic first and last words while generating a sentence. 
+I defined a function <code>get_bigrams</code> that would create a list of bigrams with padding symbols to indicate the start (<code>"\<s>"</code>) and the end (<code>"\</s>"</code>) of a sentence. I wanted to make these symbols overt in the data, so that it was easy to pick out the most common first and last words of sentences in the language data. This way, the model would be better at guessing realistic first and last words while generating a sentence. 
 
 
     def get_bigrams(token_data):
