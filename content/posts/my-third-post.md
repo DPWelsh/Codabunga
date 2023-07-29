@@ -4,7 +4,6 @@ date: 2023-07-29T19:41:07+10:00
 type: 
 - post
 - posts
-draft: true
 toc: false
 weight: 10
 series:
