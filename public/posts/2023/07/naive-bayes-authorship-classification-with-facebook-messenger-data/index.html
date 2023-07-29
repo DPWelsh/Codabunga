@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Gina Welsh ">
+<meta name="description" content="1.1 Introduction Many of us have easy access to an incredibly rich, personalised textual dataset.
+Facebook Messenger.
+I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://codabunga.io/posts/2023/07/naive-bayes-authorship-classification-with-facebook-messenger-data/" />
+
+
+    <title>
+        
+            Naive Bayes authorship classification with Facebook Messenger data :: Codabunga  — Hello Friend NG Theme
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://codabunga.io/main.ee04b1ef6d7cb915a458244e852501a1e2945f97aa490dde64489f00f7a5943b.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://codabunga.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://codabunga.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://codabunga.io/favicon-16x16.png">
+    <link rel="manifest" href="https://codabunga.io/site.webmanifest">
+    <link rel="mask-icon" href="https://codabunga.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://codabunga.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Naive Bayes authorship classification with Facebook Messenger data">
+<meta itemprop="description" content="1.1 Introduction Many of us have easy access to an incredibly rich, personalised textual dataset.
+Facebook Messenger.
+I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me.">
+<meta itemprop="datePublished" content="2023-07-29T19:41:07+10:00" />
+<meta itemprop="dateModified" content="2023-07-29T19:41:07+10:00" />
+<meta itemprop="wordCount" content="5178">
+<meta itemprop="image" content="https://codabunga.io"/>
+
+
+
+<meta itemprop="keywords" content="" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codabunga.io"/>
+
+<meta name="twitter:title" content="Naive Bayes authorship classification with Facebook Messenger data"/>
+<meta name="twitter:description" content="1.1 Introduction Many of us have easy access to an incredibly rich, personalised textual dataset.
+Facebook Messenger.
+I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me."/>
+
+
+
+    <meta property="og:title" content="Naive Bayes authorship classification with Facebook Messenger data" />
+<meta property="og:description" content="1.1 Introduction Many of us have easy access to an incredibly rich, personalised textual dataset.
+Facebook Messenger.
+I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codabunga.io/posts/2023/07/naive-bayes-authorship-classification-with-facebook-messenger-data/" />
+<meta property="og:image" content="https://codabunga.io"/>
+<meta property="article:published_time" content="2023-07-29T19:41:07+10:00" />
+<meta property="article:modified_time" content="2023-07-29T19:41:07+10:00" /><meta property="og:see_also" content="https://codabunga.io/posts/2022/10/reddit-and-language-data-part-2-generating-text/" /><meta property="og:see_also" content="https://codabunga.io/posts/2022/01/reddit-and-language-data-part-1-analysing-text/" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2023-07-29 19:41:07 &#43;1000 AEST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://codabunga.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://codabunga.io/about/">About</a></li><li><a href="https://codabunga.io/posts/">Posts</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        25 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://codabunga.io/posts/2023/07/naive-bayes-authorship-classification-with-facebook-messenger-data/">Naive Bayes authorship classification with Facebook Messenger data</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <h4 id="11-introduction">1.1 Introduction</h4>
+<p>Many of us have easy access to an incredibly rich, personalised textual dataset.</p>
+<p><strong>Facebook Messenger</strong>.</p>
+<p>I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me.</p>
+<p>At the time of writing, Facebook does not delete messages once they are past a certain expiry date, unlike some other messaging apps (e.g., Microsoft Teams). Our pools of conversations can be uncovered easily, years after each data droplet was formed with our keyboards. Sure, it may take some scrolling, but a couple of search terms can very easily bring up the deepest depths of our conversations from some of our most vulnerable and juvenile moments on this Earth.</p>
+<p>The existence of this bizarre, superfluous word archive at my fingertips sparked a new project idea. Sure, in a way, it’s awful that so many of the terrible, terrible takes of our pasts are still sitting out there on Facebook servers, perpetually on standby to be retrieved by whoever has the access, the interest, and a link to the conversation in question. So, why wouldn’t I take advantage of this uneasy situation and make a fun learning project out of it?</p>
+<p>My thoughts culminated into one focused project idea: an <strong>authorship classifier</strong>. One that is trained on Facebook Messenger data.</p>
+<h4 id="12-background-authorship-classification">1.2. Background: Authorship classification</h4>
+<p>Classification is a massive part of what we do with our human intelligence. We sort paper mail by postal addresses, identify people we know on the street by recognising their faces, judge whether or not we thought that the film we just watched was actually good, or just weird in a bad way&hellip;</p>
+<p>In a classification process, we gather data about a certain ‘thing’ (which could come from multiple sources) and assign a particular category to it.</p>
+<p>As a useful tool, many methods of machine intelligence have been developed for classification tasks. In the realm of natural language processing, text categorisation methods have been developed to assign a label or category to an entire text or document. Some tasks that come to mind include:</p>
+<ol>
+<li><strong>sentiment analysis</strong> - e.g., analysing whether a review of a book is positive or negative)</li>
+<li><strong>spam detection</strong> - filtering out emails that have indicators of being spam)</li>
+<li><strong>language identification</strong> – identifying the language in which a text is written</li>
+</ol>
+<p>The method of authorship classification (sometimes called authorship attribution), takes a textual document, processes it, and then categorises it as being written by a particular individual, or author. Such a task has useful applications in the real world – for example, plagiarism detection in the education system, or resolving uncertain authorship of documents in forensic studies.</p>
+<p>As is very often the case in computing disciplines, there isn’t just one way to build a tool that does authorship classification. Over the last couple of decades, research scientists and industry developers have studied and applied a range of methodologies for the task. The methods explored can be categorised under a few umbrellas, some of which include:</p>
+<ol>
+<li><strong>similarity-based models</strong>, which measure how similar an input text is to the textual data collected for that author, e.g., how many words in the text being classified overlap with the words collected for an author in their training data</li>
+<li><strong>probabilistic models</strong>, which calculate the probability of each author creating the input string of words</li>
+<li><strong>vector-space models</strong> – processing the text being classified by transforming the words into a vector representation</li>
+</ol>
+<p>For this project, I chose <strong>Naive Bayes Classification</strong> as the model behind my authorship classifier. I thought that this would be a good model to start with for learning purposes, as it is a simple model that can be used to classify many different types of data, is more straightforward to implement, and tends to have solid performance. A great learning source that I used to familiarise myself with the method was the ‘Naive Bayes and Sentiment Classification’ chapter in Jurasfky and Martin’s <a href="https://web.stanford.edu/~jurafsky/slp3/">Speech and Language Processing book</a>.</p>
+<h4 id="13-naive-bayes-classification-an-explanation">1.3. Naive Bayes Classification: an explanation</h4>
+<p>In the context of authorship attribution, the Naive Bayes classification method applies Bayesian inference to calculate the most likely author to have written a given document.</p>
+<p>Bayesian inference, which originates from the 18th-century work of Thomas Bayes, works with conditional probabilities. Bayes’ theorem is stated in the mathematical equation:</p>
+<p><img src="https://codabunga.io/Users/gmwelsh/CodaBungaProjects/Codabunga/resources/_gen/images/bayes_theorem.png" alt="Naive Bayes Theorem"></p>
+<p>In the right-hand side of the equation above, we’ve got three variables:</p>
+<ol>
+<li>P(B|A) – a <strong>conditional probability</strong>, that is, the probability of an event B occurring given event A. This is also called the likelihood of event A given a fixed B.</li>
+<li>P(A) – the probability of event A, without P(B) in the picture. This is also called the <strong>prior probability</strong>.</li>
+<li>P(B) – the probability of event B, without P(A) in the picture. This is also called the <strong>marginal probability</strong>.</li>
+</ol>
+<p>The above explanation is abstract, so let’s see how it would apply in our context of authorship classification.</p>
+<ol>
+<li>P(A|B) becomes P(author|document) - that is, the probability of an author being classified given a document being processed.</li>
+<li>P(B|A) becomes P(document|author) - that is, the probability of a document being written given the existence of an author.</li>
+<li>P(A) – the prior probability of an author. In our context, this would represent the proportion of an author’s writing existing in our training data, out of all the other authors’ writings in the training data.</li>
+<li>P(B) – the marginal probability of the document data, in relation to other document data. This variable is actually irrelevant for our classification task – the task is focusing on one document at a time with each run of the classifier. Other than the input text, no other data are are being considered for authorship classification during each run. So, we are conveniently going to drop this variable from our equation.</li>
+</ol>
+<p>After dropping P(B) from our equation, it reduces to:</p>
+<blockquote>
+<h5 id="pauthordocument--pdocumentauthor--pauthor">P(author|document) = P(document|author) * P(author)</h5>
+</blockquote>
+<p>You might be thinking: how are we fitting that entire ‘document’ into our equation here? Wouldn’t we have to break down the document into parts, analysing the different linguistic features inside the document and seeing which features correspond to which author?</p>
+<p>And that would be a good question!</p>
+<p>The way we are defining our ‘document’ for this task is by simply seeing it as a “bag of words”. The classifier is going to process the entire thing word-by-word and see what vocabulary is used in that document. Then, it will compare that vocabulary with the words that are used by each author in their training data.</p>
+<p>The concept of seeing the document as a “bag of words” means that we will consider the presence of each vocabulary item as an individual entity, without considering its co-occurrence with any other vocabulary item or linguistic feature. We know that in linguistic reality, words very much co-occur with one other in very systematic ways, and they don’t often just appear randomly by chance. However, the ‘Naïve’ part of this classification model assumes that each feature (i.e., word) used by an author is an independent event in itself. By assuming independence, you are then able to easily calculate the overall probability of the document occurring by multiplying the chance that an author would use each one of those vocabulary items.</p>
+<p>So, we could rewrite our previous equation to be:</p>
+<blockquote>
+<h5 id="pauthorword1-word2-word3--wordn--pword1--word2--word3--wordn--author--pauthor">P(author|word1, word2, word3, …, wordn) = P(word1 * word2 * word3 * …wordn | author) * P(author)</h5>
+</blockquote>
+<p>Otherwise stated, we are multiplying the likelihoods of each vocabulary item appearing in the text, regardless of their position within the document. Overall, it’s a very simple way of gauging the probability of an author having written a text – we don’t pay attention to any other linguistic feature other than the presence of certain words.</p>
+<p>Upon execution, the classifier runs this Bayesian calculation for each author in the candidate set. It returns the author with the maximum overall posterior probability (i.e., P(author | document) out of all the runs for the authors. This is the output – a classified author!</p>
+<p>In a mathematical formula, the concept of returning an author with the maximum posterior probability can be written as such:</p>
+<p>In our applied context, it would look a bit more like this:</p>
+<blockquote>
+<h5 id="run-1-pjoanword1-word2-word3--wordn--pword1--word2--word3--wordn--joan--pjoan--0125">Run 1: P(‘Joan’|word1, word2, word3, …, wordn) = P(word1 * word2 * word3 * …wordn | ‘Joan’) * P(‘Joan’) = 0.125</h5>
+</blockquote>
+<blockquote>
+<h5 id="run-2-pdonword1-word2-word3--wordn--pword1--word2--word3--wordn--don--pdon--0223">Run 2: P(‘Don’|word1, word2, word3, …, wordn) = P(word1 * word2 * word3 * …wordn | ‘Don’) * P(‘Don’) = 0.223</h5>
+</blockquote>
+<blockquote>
+<h5 id="run-3-progerword1-word2-word3--wordn--pword1--word2--word3--wordn--roger--proger--008">Run 3: P(‘Roger’|word1, word2, word3, …, wordn) = P(word1 * word2 * word3 * …wordn | ‘Roger’) * P(‘Roger’) = 0.08</h5>
+</blockquote>
+<p>In the runs above, Run 2 (Don) has the highest posterior probability returned (0.223), so Don would be returned as our classified author.</p>
+<p>For the problem of text classification, it’s very useful to convert the conditional probabilities into log form. The reason for this is that the probabilities of each word being used is often very small (since there are so many words out there) and multiplying each one of them together creates a very, very small number with lots of zeroes. So many zeroes in fact, then when you scale that calculation up, there is a risk of arithmetic underflow! So, log form solves this issue by converting that very small number into a more palatable negative integer. Note that when you work with log numbers, you add them together instead of multiplying them:</p>
+<blockquote>
+<h5 id="pjoanword1-word2-word3--wordn--logpword1-joan--logpword2-joan--logpword3-joan---logpwordn-joan--logpjoan">P(‘Joan’|word1, word2, word3, …, wordn) = log(P(word1| ‘Joan’) + log(P(word2| ‘Joan’) + log(P(word3| ‘Joan’)), …, + log(P(wordn| ‘Joan’)) + log(P(‘Joan’)).</h5>
+</blockquote>
+<h3 id="2-implementing-the-classifier">2. Implementing the Classifier</h3>
+<p>To implement a Naïve Bayes authorship classifier, there are a number of variables to keep in mind.</p>
+<p>The different variables (i.e., parts) of the classifier can be summarised in the following list:</p>
+<ol>
+<li>A set of <strong>authors</strong> as ‘candidates’ for classification, e.g. [Joan, Don, Roger]</li>
+<li>Some <strong>training data</strong>, that is, the balanced set of textual data made of up real text written by each of the candidate authors, to train your classifier on</li>
+<li>Some <strong>test data</strong>, that is, a set of textual data collected from the candidate authors that helps you measure how well your classifier is performing after you have trained it on the training data. Here is a rule of thumb that I have seen with allocating training and test data - 80% of your collected author data can be training data, and the remaining 20% can be test data.</li>
+<li>A <strong>training function</strong>, that is, Naive Bayes function that trains the classifier on training data</li>
+<li>A <strong>applied function</strong>, that is, a Naive Bayes function that applies the classifier to test data</li>
+</ol>
+<p>In my case, I placed the training data in one folder, the test data in another folder, and both the training and testing function in the same Python script.</p>
+<h4 id="21-collecting-the-author-candidate-data-from-facebook-messenger">2.1. Collecting the author candidate data from Facebook Messenger</h4>
+<p>The very first thing I considered before collecting my friends’ data, for a publicly shared project like this, was to get the <strong>consent</strong> of my selected friends first to use their data in this way.</p>
+<p>After all, my friends originally expressed their thoughts with me on Facebook Messenger under the presumption that it would stay within the bounds of our private conversation. So, I would like to reiterate that if you decide to use someone&rsquo;s personal data for a publicly-shared project – be sure to explain to them that you are planning to collect their private data for a personal project, and explain clearly what you would be doing with their data after they give you their permission. This gives them a chance to say yes or no to what you are doing with their data. If you feel like you can’t ask your friend&rsquo;s permission – then don&rsquo;t use their data. Consent is key.</p>
+<p>I managed to get the permission of two of my close friends to extract our Facebook Messenger conversations and create ‘textual data pools’ for both of them. I also included my own data in this project.</p>
+<p>So, as it stands, there are three authors for my classifier:</p>
+<ol>
+<li>Amelia</li>
+<li>Lewis</li>
+<li>Gina (me)</li>
+</ol>
+<p>To scrape the Facebook Messenger conversation data, I used the <a href="https://github.com/vj-09/FaceBook-Scrape">fbtxtscaper tool</a>. This neat script allows you to log into your Facebook account programmatically, extract an entire conversation history between you and your friend, and store that data in a CSV file. Each row of this CSV file contains messages sent at a certain time by each author.</p>
+<p>To work with that CSV file and covert it into textual data ‘pools’ for each author, I wrote some code that would take the CSV file, extract words from each line that is labelled with a certain author (using the <a href="https://docs.python.org/3/library/csv.html">csv</a> module) , and put those words in a text file.</p>
+<p>Here is an example of that code applied to author ‘Lewis’:</p>
+<pre><code>import csv
+
+csv_data = []
+
+# read CSV file
+with open('fb_text_lewis_gina.csv', newline='') as csvfile:
+    csv_reader = csv.reader(csvfile)
+    for line in csv_reader:
+        csv_data.append(line)
+
+# add contents of CSV file to lewis_data.txt
+for line in csv_data:
+    if line[1] == 'Lewis Ives':
+        with open('lewis_data.txt', 'a') as f:
+            f.write(line[2] + ' ')
+f.close()
+</code></pre>
+<p>The result is a text file that contains a pool of textual data for that particular author ([author]_data.txt’).</p>
+<p>After running that extraction for each of the candidate authors, I had some big, heavy text documents to work with.</p>
+<p>My friend Amelia and I had <em>heaps</em> of words in our data sets, which reflects on the fact that we’ve been friends for several years and we have regularly used Facebook to message each other for several years.</p>
+<p>On the other hand, my friend Lewis and I have only been friends for just over a year, and we don’t use Facebook Messenger as often to interact with each other, other than mainly to coordinate real-life plans together.</p>
+<p>This created an imbalance in the data sets – Lewis’ training dataset only had 10,000 words, whereas Amelia and I had close to 100,000 each. I wanted the data sets for each other to be of equal length, in order to ensure that the training data were balanced and to reduce the chances of the classifier being biased towards a particular author candidate. So, I cut down my and Amelia’s data to 10,000 each, so that the priors for each candidate author – P(author) - could accurately be one third (1/3) each.</p>
+<p>In projects that deal with natural language data, it is also important to remember the pre-processing step of <strong>tokenising</strong> the textual data. Tokenising textual data allows the data set to be processed by the classifier as a document of words and word parts, instead of one giant string of random characters.</p>
+<p>I used the below code as a function to tokenise the training data documents of each author candidate:</p>
+<pre><code>import nltk
+from nltk.tokenize import word_tokenize
+from nltk.tokenize import sent_tokenize
+
+def extract_words(file):
+    dataset =[]
+    with open(file, 'r') as fh:
+        dataset = fh.read()
+        fh.close()
+    word_dataset = word_tokenize(dataset)
+    return word_dataset
+</code></pre>
+<p>I applied this function to each training and test document that I was working with, so that I had a set of variables containing tokenised word data to refer to in my Naive Bayes Classifier script:</p>
+<pre><code># training datasets
+amelia_document = extract_words('amelia_training_data.txt')
+gina_document = extract_words('gina_training_data.txt')
+lewis_document = extract_words('./training_data/lewis_training_data.txt')
+
+# test datasets
+amelia_test_doc = extract_words('./test_data/amelia_test_document.txt')
+gina_test_doc = extract_words('./test_data/gina_test_document.txt')
+lewis_test_doc = extract_words('./test_data/lewis_test_document.txt')
+</code></pre>
+<p>Overall, the steps for data collection for this authorship classifier can be summarised as follows:</p>
+<ol>
+<li>
+<p>Use a web scraping tool that can access and extract entire Facebook Messenger conversations,</p>
+</li>
+<li>
+<p>Separate the conversational data into ‘pools’ for each candidate author,</p>
+</li>
+<li>
+<p>Make sure that the training data is balanced (in number of words) between the candidate authors,</p>
+</li>
+<li>
+<p>Make sure that your training data is tokenised, so that you are working with real words as data, not just strings of characters.</p>
+</li>
+</ol>
+<h4 id="22-feature-selection">2.2. Feature selection</h4>
+<p>Before we get started on implementing the classifier itself, I’ll drop a couple of notes on <strong>feature selection</strong>.</p>
+<p>The Naive Bayes classification method considers <strong>features</strong> of the data in order to make its class prediction. In our application of the method to text author classification, the classifier considers the presence of vocabulary items within the textual data as features.</p>
+<p>A major problem in the realm of text classification is in the <strong>high dimensionality</strong> of the feature space in the domain of textual data. We can attribute the problem to the fact that in human language, many unique words are used to string together paragraphs of expression. In our classifier’s training data, our candidate authors use thousands of unique vocabulary items. Since we are keeping tabs on the conditional probabilities of vocabulary items, this means that our domain has thousands of potential features to work with. Overall, when a classifier has a very high number of features to consider when calculating conditional probabilities, its performance - in terms of speed and even accuracy - can be lowered considerably.</p>
+<p>A way of accounting for high dimensionality is to perform feature selection. This process prunes the number of features for the classifier in order to reduce the feature space. When pruning the feature space, we have to make decisions on which features would be most relevant for the classifier to consider.</p>
+<p>I narrowed down the set of words in the feature space (i.e. the vocabulary of the classifier)</p>
+<pre><code># extract 50 most common words from each author's training data
+
+amelia_freq_dist = [i[0] for i in FreqDist(amelia_document).most_common(50)]
+gina_freq_dist = [i[0] for i in FreqDist(gina_document).most_common(50)]
+lewis_freq_dist = [i[0] for i in FreqDist(lewis_document).most_common(50)]
+
+# merge vocabulary into set
+
+vocabulary = set(amelia_freq_dist + gina_freq_dist + lewis_freq_dist)
+</code></pre>
+<p>You can see that I’ve taken the 50 most common words for each author and placed that in a merged set &lsquo;vocabulary&rsquo; as the feature space.</p>
+<p>The idea behind this was that I wanted the feature space to contain words that each author is most likely to say, to encapsulate the vocabulary items that are characteristic of each author.</p>
+<p>I did try another method of feature extraction. At one point, I made the feature space to be the merged set of &lsquo;unique vocabulary&rsquo; of each author, that is, any vocabulary item in the training data that was written by one author, but not by the other two. The problem with this feature space was that the frequencies of these unique vocabulary items tended to be incredibly low. Often when running the classifier on the test document, the document itself did not contain enough of these unique vocabulary items, to the point that the classifier simply could not get enough information from the text to make a good classification.</p>
+<p>So, I went back to making the feature space as the top 50 frequency words for each author – even though a lot of these words would overlap, there would be enough of a sample size for the feature space to contain some less frequent (but distinct) vocabulary items of each author.</p>
+<p>Overall, making decisions on the feature space of the classifier can have a big impact on its accuracy and performance.</p>
+<h4 id="23-implementing-the-naive-bayes-classifier">2.3. Implementing the Naive Bayes Classifier</h4>
+<p>As a place to start, I referred to the pseudocode written out in <a href="https://web.stanford.edu/~jurafsky/slp3/4.pdf">Jurasfky and Martin’s chapter</a> in order to get an idea of how I would start to implement the classifier in Python.</p>
+<p>As mentioned above, we have two main parts to the classification script:</p>
+<ol>
+<li>the training function</li>
+<li>the testing function</li>
+</ol>
+<p>This is how the training function was implemented in my Python script:</p>
+<pre><code>def train_naive_bayes(authors, vocabulary):
+
+    all_words = amelia_document + gina_document + lewis_document
+        n_documents = len(all_words)
+    authorship = {“Amelia”: amelia_document, “Gina”: gina_document, “Lewis”: lewis_document}
+    log_priors = {}
+    log_likelihoods = {}
+    n_authored_data = {}
+
+    for author in authors:
+        log_priors[author] = 1/(len(authors))
+        n_authored_data[author] = len(authorship[author])
+        log_likelihoods[author] = {}
+        for unique_word in vocabulary:
+            counter = authorship[author].count(unique_word)
+            log_likelihoods[author][unique_word] = math.log(counter+1)/(n_authored_data[author]+1*(all_words.count(unique_word)+1/n_documents+1))
+
+    return log_priors, log_likelihoods
+</code></pre>
+<p>Let’s break down the training function into its component steps:</p>
+<ol>
+<li>
+<p>Load the candidate author set and feature space (i.e. vocabulary) into the train_naive_bayes function</p>
+<pre><code> def train_naive_bayes(authors, vocabulary)
+</code></pre>
+</li>
+<li>
+<p>Keep track of the content and length of the entire training dataset. Initialise the relation between the candidate author label and their training document, by creating a dictionary ‘authorship’ that links one with the other:</p>
+<pre><code> all_words = amelia_document + gina_document + lewis_document
+ n_documents = len(all_words)
+ authorship = {“Amelia”: amelia_document, “Gina”: gina_document, “Lewis”: lewis_document}
+</code></pre>
+</li>
+<li>
+<p>Initialise the dictionaries that record the log priors, log likelihoods and the length of each author’s training document:</p>
+<pre><code> log_priors = {}
+ log_likelihoods = {}
+ n_authored_data = {}
+</code></pre>
+</li>
+<li>
+<p>Fill in the above variables by cycling through the candidate author set and creating dictionaries that track the relevant values for each author. For the log_likelihoods variable, I created a nested dictionary, since the conditional probabilities of several vocabulary items will need to be tracked for each author (not just one item):</p>
+<pre><code> for author in authors:
+     log_priors[author] = 1/(len(authors))
+     n_authored_data[author] = len(authorship[author])
+     log_likelihoods[author] = {}
+</code></pre>
+</li>
+<li>
+<p>Now time for the actual calculation of the conditional probabilities. The script cycles through the input vocabulary (feature space), and counts how many times that vocabulary item appears in each author’s training document.</p>
+<pre><code> for unique_item in vocabulary:
+     counter = authorship[author].count(unique_word)
+</code></pre>
+</li>
+</ol>
+<p>For that vocabulary item, I then took the count of how many times it appears in that training document and added 1 to it (see <a href="https://towardsdatascience.com/laplace-smoothing-in-na%C3%AFve-bayes-algorithm-9c237a8bdece">LaPlace smoothing</a>), divided that value by the length of the training document (plus 1), and multiplied that value by the number of times that the vocabulary item appears in all training documents (plus 1), out of all the words that appear in all the training documents (plus 1). Then, convert that whole calculation into its log value, using the math module in Python.</p>
+<pre><code>log_likelihoods[author][unique_word]=
+math.log((counter+1)/(n_authored_data[author]+1*(all_words.count(unique_word)+1/n_documents+1)))
+</code></pre>
+<ol start="6">
+<li>
+<p>Return the log priors and log likelihoods. The output of this function can then be assigned as global variables for the rest of the script to work with.</p>
+<pre><code> return log_priors, log_likelihoods
+ log_priors, log_likelihoods = train_naive_bayes(authors, vocabulary)
+</code></pre>
+</li>
+</ol>
+<h4 id="24-testing">2.4. Testing</h4>
+<p>Now that I had the training function implemented, it’s time to actually apply it to some real test data.</p>
+<pre><code>def test_naive_bayes(testdoc, logpriors, loglikelihoods, authors, vocabulary):
+    sums = {}
+
+    # process test doc
+    for author in authors:
+        sums[author] = logpriors[author]
+        for word in testdoc:
+            if word in vocabulary:
+                # add author's conditional likelihood of vocab item to sums value
+                sums[author] += loglikelihoods[author][word]
+
+    # return author with maximum posterior probability
+    for author in sums:
+        if sums[author] == max(sums.values()):
+            return &quot;Author classified: &quot; + author
+</code></pre>
+<p>Again, let’s break the test_naive_bayes function into its steps:</p>
+<ol>
+<li>
+<p>Load the test document, log priors and log likelihoods (from the training function), author candidate set and vocabulary into the test function:</p>
+<pre><code>def test_naive_bayes(testdoc, logpriors, loglikelihoods, authors, vocabulary):
+</code></pre>
+</li>
+<li>
+<p>Create a dictionary called “sums” that will keep track of each author, as well as a counter for how often a vocabulary item appears in the test data. Initialise the value this dictionary as the log prior value for each author (calculated in the training function):</p>
+<pre><code>sums = {}
+for author in authors:
+    sums[author] = logpriors[author]
+</code></pre>
+</li>
+<li>
+<p>Cycle through every token in the test document. If that token also appears in the vocabulary list, then add the author’s log likelihood of that word (calculated in the training function) to the author’s value in the “sums” dictionary.</p>
+<pre><code> for word in testdoc:
+     if word in vocabulary:
+         sums[author] += loglikelihoods[author][word]
+</code></pre>
+</li>
+</ol>
+<p>The more words in the test document that appear in the vocabulary, and the more that vocabulary appears in the training data of an author, the higher the “sums” value will be for that author – that is, they are more likely to be the author for that test document (based on Naive Bayesian inference):</p>
+<p>To explain this calculation a bit further – overall, the classifier is trying to link the frequency of vocabulary items appearing in the test document with the frequency of those items appearing in each author’s training document. For each vocabulary item, the testing function sees how often it appears as a word in the test document. Each time that item is detected in the test document, the author’s “sums” value increments by the conditional likelihood value of that vocabulary item in the author’s training data (<code>loglikelihoods[author][word]</code>).</p>
+<p>Take the example of the vocabulary item ‘like’. In my section of the log likelihoods dictionary (author: ‘Gina’), the log probability for this item is -1.2645269104588241. In the the classifier’s test run that calculates my likelihood of being an author candidate, every instance of the word ‘like’ appearing in the test document would increment my “sums” value by -1.2645269104588241 each time.</p>
+<p>The word ‘like’ appears 4 times in training document:</p>
+<pre><code>sums[‘Gina’] = -0.47712125472 (log prior) + 
+(-1.2645269104588241 ) + 
+(-1.2645269104588241) + 
+(-1.2645269104588241 + 
+(-1.2645269104588241)`
+
+&gt; Summed value: -5.53522889656
+</code></pre>
+<p>Let’s take that same example word ‘like’, and let’s imagine that the log probability was a lower value at -9.134236087786782. Maybe, it would be the result of the word ‘like’ appearing much less in the training document of the author ‘Amelia’:</p>
+<pre><code>sums[‘Amelia’] = -0.47712125472 (log prior) + 
+(-9.134236087786782) + 
+(-9.134236087786782) + 
+(-9.134236087786782) + 
+(-9.134236087786782)
+
+&gt; Summed value: -37.0140656059
+</code></pre>
+<p>The word ‘like’ still appears 4 times in this classifier run, since the test document is the same. However, the word contributes way less to the “sums” value of the author Amelia, since her conditional likelihood of this word in her dictionary is much lower.</p>
+<p>If the test document contains a high frequency of vocabulary items, and an author’s training data also contains a high frequency of those items, the “sums” value of that author is going to be higher than the others. According to the classifier, they are a more likely candidate to have authored that document, since the vocabulary items have a high rate of co-occurring in both the test document and the author’s training document. On the other hand, if you have a high number of vocabulary items appearing in the test document, but hardly any them appear in the training data of an author, then that particular author’s “sums” value will be lower, making them a less likely candidate to have authored that document.</p>
+<p>The last step of the code cycles through the authors in the “sums” dictionary. It returns the author with the highest “sums” value – this is the most likely candidate author, according to the classifier:</p>
+<pre><code> for author in sums:
+     if sums[author] == max(sums.values()):
+        return &quot;Author classified: &quot; + author
+</code></pre>
+<p>In other words, we have run the test classifier on all the different authors, calculated the “sums” for each one, and will return the author that had the highest value in their “sums” calculation.</p>
+<p>To make the results clearer to me, I also wrote a small function that prints out the results neatly to my console:</p>
+<pre><code> def print_out_test(doc_string, real_author):
+ print(&quot;Real author: &quot; + real_author + &quot; --&gt; &quot; + test_naive_bayes(doc_string, log_priors, log_likelihoods, authors, vocabulary))
+ return 
+ 
+ print_out_test(text_file.txt, 'Author')
+ &gt; “Real author: 'Author' --&gt; Author classified: 'Author'”
+</code></pre>
+<p>Overall, the implementation of the training and testing functions did not take up much code at all. I managed to fit it all in to about 30 lines – a testament to the simplicity of the Naive Bayes classification method.</p>
+<h3 id="3-results">3. Results</h3>
+<h4 id="31-the-output">3.1. The output</h4>
+<p>I had a bit of trial-and-error in applying this classifier to the test documents using different methods of feature extraction. My goal was to get it to classify each test document (n words =10,000 each) of the author as the correct one. After much fiddling around (and fixing bugs along the way), I finally got it classifying the correct authors:</p>
+<pre><code>print_out_test(amelia_test_doc, &quot;Amelia&quot;)
+print_out_test(lewis_test_doc, &quot;Lewis&quot;)
+print_out_test(gina_test_doc, &quot;Gina&quot;)
+
+&gt;&gt; “Real author: Amelia --&gt; Author classified: Amelia”
+&gt;&gt; “Real author: Lewis --&gt; Author classified: Lewis”
+&gt;&gt; “Real author: Gina --&gt; Author classified: Gina”
+</code></pre>
+<p>Also, a fun thing to do is to put in random strings as input, and get the classifier to guess which one of your friends is most likely to write something like that:</p>
+<p>(1) print_out_test(&ldquo;heyo, :^)&rdquo;, &ldquo;N/A&rdquo;)</p>
+<pre><code>&gt;&gt; “Real author: N/A --&gt; Author classified: Lewis”
+</code></pre>
+<p>(2) print_out_test(&ldquo;I&rsquo;m really hungry, really want some choccie&hellip;sad&rdquo;, &ldquo;N/A&rdquo;)</p>
+<pre><code>&gt;&gt; “Real author: N/A --&gt; Author classified: Gina”
+</code></pre>
+<p>I want to emphasise that the results were by no means perfect – even though the whole test documents were correctly classified, failures did happen when I took subsets of training data to test the classifier.</p>
+<p>(3) print_out_test(&ldquo;mmm I’ll try to get there like 9 maybe? Ye that is ok! I wanna leave early cos it’s a long drive Cool cool, I’ll message you tomorrow morning I think I’ll be more like 9:30 but I’ll msg you&rdquo;, &ldquo;Amelia&rdquo;)</p>
+<pre><code>&gt;&gt; “Real author: Amelia --&gt; Author classified: Gina”
+</code></pre>
+<h4 id="32-insights">3.2. Insights</h4>
+<p>One thing I noticed was that the classifier was very good at correctly classifying one of the authors (Lewis) but found it harder to distinguish between the other two authors (Amelia and Gina).</p>
+<p>I think that the classifier’s difficulty in distinguishing between Amelia&rsquo;s and Gina’s (my) data may have had to do with the context in which their training data were collected. The source of these two authors’ training data was the same – their words were extracted from the same conversation between each other. Lewis’ training data, on the other hand, were extracted from a conversation with me, but my data were not extracted from this same source. When I look at my and Amelia’s conversation thread with the naked eye, I can see that we often mirror each other with our language choices, probably due to our close camaraderie and inside jokes. In a way, the collection of our training data would not be so much a representation of our word choices across all domains, but rather a representation of our word choices in relation to when we interact with each other.</p>
+<p>So, there’s a sort of asymmetry going on in the domains across the training data. Amelia’s training data is based on Gina-Amelia conversations (but not Lewis-Amelia); Lewis’ training data is based on Lewis-Gina conversations (but not Lewis-Amelia), but Gina’s training data is based on Gina-Amelia conversations (but not Lewis-Gina). I think it would be interesting to see how this classifier would perform if the domain gaps mentioned here were filled.</p>
+<p>Or, you could have another kind of textual data – capturing monologues of each author so that you have data that is not expressed in relation to another person, like academic essays. However, you would probably have to test a classifier that is trained on this kind of data with a test document that is also a sort of monologue.</p>
+<h3 id="4-conclusion">4. Conclusion</h3>
+<p>I found the implementation of the Naive Bayes classification method with Python relatively simple to do. I think it would be cool to experiment with this classification method with other types of features (e.g., character trigrams), other types of training data, and more authors.</p>
+<p>Overall, this endeavour was a solid intro to classification methods, and it taught me the basics of Bayesian inference from an applied point of view. I could write the entire classifier script in less than 75 lines. I think it performed well given that it considered just one type of linguistic feature, was trained on a relatively low amount of data, and had a very simple code implementation. It’s nice to have in the toolkit!</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        5178 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2023-07-29 19:41
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data&amp;caption=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data&amp;canonicalUrl=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data&amp;body=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f&amp;media=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f;description=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f&amp;title=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data&amp;summary=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data&amp;source=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f&amp;resubmit=true&amp;title=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f;title=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data%20https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f&amp;t=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Naive%20Bayes%20authorship%20classification%20with%20Facebook%20Messenger%20data&amp;url=https%3a%2f%2fcodabunga.io%2fposts%2f2023%2f07%2fnaive-bayes-authorship-classification-with-facebook-messenger-data%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h"></span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://codabunga.io/posts/2022/10/reddit-and-language-data-part-2-generating-text/">
+                <span class="button__text">Reddit and language data part 2 - Generating text</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2023</span>
+            
+                <span><a href="https://codabunga.io">Gina Welsh</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://codabunga.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            
+            
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://codabunga.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
