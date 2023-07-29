@@ -1,8 +1,7 @@
 baseURL = "https://codabunga.io"
-title   = "Codabunga"
+title   = " "
 languageCode = "en-us"
 theme = "hello-friend-ng"
-
 
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
@@ -49,11 +48,10 @@ disableHugoGeneratorInject = false
   series   = "series"
 
 [params]
-  dateform        = "2 Jan, 2006"
-  dateformShort   = "2 Jan"
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04"
-  custom_css = ["css/custom_style.css"]
 
   # Metadata mostly used in document's head
   # 
@@ -61,7 +59,7 @@ disableHugoGeneratorInject = false
   keywords = ""
   images = [""]
 
-  homeSubtitle = ""
+  homeSubtitle = "Codabunga"
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   #
@@ -82,7 +80,7 @@ disableHugoGeneratorInject = false
   # Integrate Javascript files or stylesheets by adding the url to the external assets or by
   # linking local files with their path relative to the static folder, e.g. "css/styles.css"
   #
-  #customCSS = []
+  customCSS = []
   customJS  = []
 
   # Toggle this option need to rebuild SCSS, requires extended version of Hugo
@@ -91,14 +89,14 @@ disableHugoGeneratorInject = false
 
   # Default theme "light" or "dark"
   #
-  defaultTheme = "light"
+  defaultTheme = "dark"
   themeColor = "#252627"
 
   # Custom footer 
   # If you want, you can easily override the default footer with your own content. 
   #
-  footerLeft = ""
-  footerRight = "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"
+  # footerLeft = "Powered by <a href=\"http://gohugo.io\">Hugo</a>"
+  # footerRight = "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"
 
   # Colors for favicons
   #
@@ -125,25 +123,25 @@ disableHugoGeneratorInject = false
   #   maxWidth = "50px"
 
   # Social icons
-  # [[params.social]]
-  # name = "twitter"
-  # url  = "https://twitter.com/"
-
-  # [[params.social]]
-  # name = "email"
-  # url  = "mailto:nobody@example.com"
+  [[params.social]]
+    name = "twitter"
+    url  = "https://twitter.com/"
 
   [[params.social]]
-  name = "github"
-  url  = "https://github.com/ginawelsh"
+    name = "email"
+    url  = "mailto:nobody@example.com"
 
   [[params.social]]
-  name = "linkedin"
-  url  = "https://www.linkedin.com/in/gina-welsh/"
+    name = "github"
+    url  = "https://github.com/"
 
-  # [[params.social]]
-  # name = "stackoverflow"
-  # url  = "https://www.stackoverflow.com/"
+  [[params.social]]
+    name = "linkedin"
+    url  = "https://www.linkedin.com/"
+
+  [[params.social]]
+    name = "stackoverflow"
+    url  = "https://www.stackoverflow.com/"
 
 [languages]
   [languages.en]

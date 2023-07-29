@@ -52,7 +52,7 @@ In the context of authorship attribution, the Naive Bayes classification method 
 
 Bayesian inference, which originates from the 18th-century work of Thomas Bayes, works with conditional probabilities. Bayes’ theorem is stated in the mathematical equation:
 
-![Naive Bayes Theorem](/Users/gmwelsh/CodaBungaProjects/Codabunga/resources/_gen/images/bayes_theorem.png)
+![Naive Bayes Theorem](/Users/gmwelsh/CodaBungaProjects/Codabunga/public/posts/images/Facebook-Messenger-Logo.png)
 
 In the right-hand side of the equation above, we’ve got three variables:
 
