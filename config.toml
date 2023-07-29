@@ -3,6 +3,7 @@ title   = "Codabunga"
 languageCode = "en-us"
 theme = "hello-friend-ng"
 
+
 PygmentsCodeFences = true
 PygmentsStyle = "monokai"
 
@@ -37,7 +38,7 @@ disableHugoGeneratorInject = false
   posts = "/posts/:year/:month/:title/"
 
 [author]
-  name = "Gina and Dan Welsh"
+  name = "Gina Welsh"
 
 [blackfriday]
   hrefTargetBlank = true
@@ -48,10 +49,11 @@ disableHugoGeneratorInject = false
   series   = "series"
 
 [params]
-  dateform        = "Jan 2, 2006"
-  dateformShort   = "Jan 2"
+  dateform        = "2 Jan, 2006"
+  dateformShort   = "2 Jan"
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04"
+  custom_css = ["css/custom_style.css"]
 
   # Metadata mostly used in document's head
   # 
@@ -80,7 +82,7 @@ disableHugoGeneratorInject = false
   # Integrate Javascript files or stylesheets by adding the url to the external assets or by
   # linking local files with their path relative to the static folder, e.g. "css/styles.css"
   #
-  customCSS = []
+  #customCSS = []
   customJS  = []
 
   # Toggle this option need to rebuild SCSS, requires extended version of Hugo
