@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Codabunga</title>
-    <link>https://codabunga.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Codabunga</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 03 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://codabunga.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reddit and language data part 2 - Generating text</title>
-      <link>https://codabunga.io/posts/2022/10/reddit-and-language-data-part-2-generating-text/</link>
+      <link>http://localhost:1313/posts/2022/10/reddit-and-language-data-part-2-generating-text/</link>
       <pubDate>Mon, 03 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://codabunga.io/posts/2022/10/reddit-and-language-data-part-2-generating-text/</guid>
+      <guid>http://localhost:1313/posts/2022/10/reddit-and-language-data-part-2-generating-text/</guid>
       <description>1. Introduction In this post, I’ll show you how I wrote a Python script to generate text using the bigram language model.
 For my second project on this site, I wanted to learn to go beyond simply analysing language data on Reddit – I wanted to learn how to generate it.
 I thought that a good first foray into language generation would be to take user comment data from a Reddit community (‘subreddit’), create a language model from the linguistic patterns of that data, and then generate new text from those patterns.</description>
@@ -21,10 +21,10 @@ I thought that a good first foray into language generation would be to take user
     
     <item>
       <title>Reddit and language data part 1 - Analysing text</title>
-      <link>https://codabunga.io/posts/2022/01/reddit-and-language-data-part-1-analysing-text/</link>
+      <link>http://localhost:1313/posts/2022/01/reddit-and-language-data-part-1-analysing-text/</link>
       <pubDate>Fri, 07 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://codabunga.io/posts/2022/01/reddit-and-language-data-part-1-analysing-text/</guid>
+      <guid>http://localhost:1313/posts/2022/01/reddit-and-language-data-part-1-analysing-text/</guid>
       <description>Introduction I’m barely on Reddit these days.
 However, when I was on Reddit, I found it interesting how different Reddit communities (‘subreddits’) seemed to have distinct flavours in the way users socially contribute to their forum.
 Since Reddit is a host for a diverse group of communities banded around interests, it would follow that the type of language used in each subreddit would have its own special signature of popular word choices, sentiments, and social dynamics.</description>
@@ -32,10 +32,10 @@ Since Reddit is a host for a diverse group of communities banded around interest
     
     <item>
       <title>About</title>
-      <link>https://codabunga.io/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Tue, 04 Jan 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://codabunga.io/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>Hi! My name&amp;rsquo;s Gina Welsh.
 I&amp;rsquo;m using this site to document my programming projects.
 I am most interested in data analysis and linguistics, so you&amp;rsquo;ll probably find projects related to that here.
