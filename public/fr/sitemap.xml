@@ -3,20 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://codabunga.io/fr/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://codabunga.io/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://codabunga.io/fr/categories/"
-                />
-  </url>
-  
-  <url>
     <loc>https://codabunga.io/fr/</loc>
     <xhtml:link
                 rel="alternate"
@@ -27,6 +13,20 @@
                 rel="alternate"
                 hreflang="fr"
                 href="https://codabunga.io/fr/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://codabunga.io/fr/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://codabunga.io/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://codabunga.io/fr/categories/"
                 />
   </url>
   
