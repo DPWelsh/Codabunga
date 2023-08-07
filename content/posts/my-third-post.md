@@ -24,8 +24,7 @@ The existence of this bizarre, superfluous word archive at my fingertips sparked
 My thoughts culminated into one focused project idea: an **authorship classifier**. One that is trained on Facebook Messenger data. 
 
 #### 1.2. Background: Authorship classification
-
-Classification is a massive part of what we do with our human intelligence. We sort paper mail by postal addresses, identify people we know on the street by recognising their faces, judge whether or not we thought that the film we just watched was actually good, or just weird in a bad way...
+Classification is a massive part of what we do with our human intelligence. We sort paper mail by postal address, identify people we know on the street by recognising their faces, judge whether or not we thought that the film we just watched was actually good, or just weird in a bad way...
 
 In a classification process, we gather data about a certain ‘thing’ (which could come from multiple sources) and assign a particular category to it.
 
@@ -35,7 +34,7 @@ As a useful tool, many methods of machine intelligence have been developed for c
 2) **spam detection** - filtering out emails that have indicators of being spam)
 3) **language identification** – identifying the language in which a text is written
 
-The method of authorship classification (sometimes called authorship attribution), takes a textual document, processes it, and then categorises it as being written by a particular individual, or author. Such a task has useful applications in the real world – for example, plagiarism detection in the education system, or resolving uncertain authorship of documents in forensic studies.
+The method of authorship classification (also referred to as **authorship attribution**), takes a textual document, processes it, and then categorises it as being written by a particular individual, or author. Such a task has useful applications in the real world – for example, plagiarism detection in the education system, or resolving uncertain authorship of documents in forensic studies.
 
 As is very often the case in computing disciplines, there isn’t just one way to build a tool that does authorship classification. Over the last couple of decades, research scientists and industry developers have studied and applied a range of methodologies for the task. The methods explored can be categorised under a few umbrellas, some of which include:
 
