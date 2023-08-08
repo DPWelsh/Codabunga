@@ -47,7 +47,7 @@ I have had a Facebook profile since my early high school years. I have access to
 I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me.">
 <meta itemprop="datePublished" content="2023-07-29T19:41:07+10:00" />
 <meta itemprop="dateModified" content="2023-07-29T19:41:07+10:00" />
-<meta itemprop="wordCount" content="5180">
+<meta itemprop="wordCount" content="5175">
 <meta itemprop="image" content="http://localhost:1313/"/>
 
 
@@ -185,8 +185,8 @@ I have had a Facebook profile since my early high school years. I have access to
 <h4 id="13-naive-bayes-classification-an-explanation">1.3. Naive Bayes Classification: an explanation</h4>
 <p>In the context of authorship attribution, the Naive Bayes classification method applies Bayesian inference to calculate the most likely author to have written a given document.</p>
 <p>Bayesian inference, which originates from the 18th-century work of Thomas Bayes, works with conditional probabilities. Bayes’ theorem is stated in the mathematical equation:</p>
-<p>Naive Bayes</p>
-<p>In the right-hand side of the equation above, we’ve got threes variables:</p>
+<p><img src="http://localhost:1313/naive-bayes-theorem.png" alt="Naive Bayes"></p>
+<p>In the right-hand side of the equation above, we’ve got three variables:</p>
 <ol>
 <li>P(B|A) – a <strong>conditional probability</strong>, that is, the probability of an event B occurring given event A. This is also called the likelihood of event A given a fixed B.</li>
 <li>P(A) – the probability of event A, without P(B) in the picture. This is also called the <strong>prior probability</strong>.</li>
@@ -237,8 +237,8 @@ I have had a Facebook profile since my early high school years. I have access to
 <li>A set of <strong>authors</strong> as ‘candidates’ for classification, e.g. [Joan, Don, Roger]</li>
 <li>Some <strong>training data</strong>, that is, the balanced set of textual data made of up real text written by each of the candidate authors, to train your classifier on</li>
 <li>Some <strong>test data</strong>, that is, a set of textual data collected from the candidate authors that helps you measure how well your classifier is performing after you have trained it on the training data. Here is a rule of thumb that I have seen with allocating training and test data - 80% of your collected author data can be training data, and the remaining 20% can be test data.</li>
-<li>A <strong>training function</strong>, that is, Naive Bayes function that trains the classifier on training data</li>
-<li>A <strong>applied function</strong>, that is, a Naive Bayes function that applies the classifier to test data</li>
+<li>A <strong>training function</strong>, that is, a function that trains the classifier on training data</li>
+<li>A <strong>applied function</strong>, that is, a function that applies the classifier to test data</li>
 </ol>
 <p>In my case, I placed the training data in one folder, the test data in another folder, and both the training and testing function in the same Python script.</p>
 <h4 id="21-collecting-the-author-candidate-data-from-facebook-messenger">2.1. Collecting the author candidate data from Facebook Messenger</h4>
@@ -538,7 +538,7 @@ print_out_test(gina_test_doc, &quot;Gina&quot;)
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        5180 Words
+        5175 Words
       </p>
 
       <p>

@@ -120,7 +120,7 @@ disableHugoGeneratorInject = false
   [params.portrait]
     path     = "/surfing.png/"
     alt      = "Codabunga"
-    maxWidth = "50px"
+    maxWidth = "5000px"
 
   [[params.social]]
     name = "github"

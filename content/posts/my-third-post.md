@@ -52,9 +52,9 @@ In the context of authorship attribution, the Naive Bayes classification method 
 
 Bayesian inference, which originates from the 18th-century work of Thomas Bayes, works with conditional probabilities. Bayes’ theorem is stated in the mathematical equation:
 
-Naive Bayes
+![Naive Bayes](/naive-bayes-theorem.png)
 
-In the right-hand side of the equation above, we’ve got threes variables:
+In the right-hand side of the equation above, we’ve got three variables:
 
  1) P(B|A) – a **conditional probability**, that is, the probability of an event B occurring given event A. This is also called the likelihood of event A given a fixed B.
 2) P(A) – the probability of event A, without P(B) in the picture. This is also called the **prior probability**.
@@ -118,8 +118,8 @@ The different variables (i.e., parts) of the classifier can be summarised in the
 1) A set of **authors** as ‘candidates’ for classification, e.g. [Joan, Don, Roger]
 2) Some **training data**, that is, the balanced set of textual data made of up real text written by each of the candidate authors, to train your classifier on
 3) Some **test data**, that is, a set of textual data collected from the candidate authors that helps you measure how well your classifier is performing after you have trained it on the training data. Here is a rule of thumb that I have seen with allocating training and test data - 80% of your collected author data can be training data, and the remaining 20% can be test data.
-4) A **training function**, that is, Naive Bayes function that trains the classifier on training data
-5) A **applied function**, that is, a Naive Bayes function that applies the classifier to test data
+4) A **training function**, that is, a function that trains the classifier on training data
+5) A **applied function**, that is, a function that applies the classifier to test data
 
 In my case, I placed the training data in one folder, the test data in another folder, and both the training and testing function in the same Python script.
 
