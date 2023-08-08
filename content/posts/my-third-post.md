@@ -1,19 +1,20 @@
 ---
-title: "Naive Bayes authorship classification with Facebook Messenger data"
+author:
+  name: "Gina Welsh"
+title: Naive Bayes authorship classification with Facebook Messenger data
 date: 2023-07-29T19:41:07+10:00
-type: 
+linktitle: Naive Bayes authorship classification with Facebook Messenger data
+type:
 - post
 - posts
-toc: false
 weight: 10
 series:
 - Hugo 101
 ---
-
 #### 1.1 Introduction
 Many of us have easy access to an incredibly rich, personalised textual dataset.
 
-**Facebook Messenger**.
+![Facebook](/fb.png)
 
 I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me.
 
@@ -51,9 +52,9 @@ In the context of authorship attribution, the Naive Bayes classification method 
 
 Bayesian inference, which originates from the 18th-century work of Thomas Bayes, works with conditional probabilities. Bayes’ theorem is stated in the mathematical equation:
 
-![Naive Bayes](/n-jurafsky.png)
+Naive Bayes
 
-In the right-hand side of the equation above, we’ve got three variables:
+In the right-hand side of the equation above, we’ve got threes variables:
 
  1) P(B|A) – a **conditional probability**, that is, the probability of an event B occurring given event A. This is also called the likelihood of event A given a fixed B.
 2) P(A) – the probability of event A, without P(B) in the picture. This is also called the **prior probability**.
@@ -70,6 +71,7 @@ After dropping P(B) from our equation, it reduces to:
 
 > ##### P(author|document) = P(document|author) * P(author)
 
+![Naive Bayes](/nb-jurafsky.png)
 
 You might be thinking: how are we fitting that entire ‘document’ into our equation here? Wouldn’t we have to break down the document into parts, analysing the different linguistic features inside the document and seeing which features correspond to which author?
 

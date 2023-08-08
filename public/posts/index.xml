@@ -16,17 +16,16 @@
             
             <guid>http://localhost:1313/posts/2023/07/naive-bayes-authorship-classification-with-facebook-messenger-data/</guid>
             <description>1.1 Introduction Many of us have easy access to an incredibly rich, personalised textual dataset.
-Facebook Messenger.
 I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me.</description>
             <content type="html"><![CDATA[<h4 id="11-introduction">1.1 Introduction</h4>
 <p>Many of us have easy access to an incredibly rich, personalised textual dataset.</p>
-<p><strong>Facebook Messenger</strong>.</p>
+<p><img src="/fb.png" alt="Facebook"></p>
 <p>I have had a Facebook profile since my early high school years. I have access to hundreds of Facebook Messenger conversations to which I have contributed for over a decade. In other words, I have access to an enormous amount of textual data, comprising not only all the written words that I’ve sent over Messenger but also the words that my friends have sent to me.</p>
 <p>At the time of writing, Facebook does not delete messages once they are past a certain expiry date, unlike some other messaging apps (e.g., Microsoft Teams). Our pools of conversations can be uncovered easily, years after each data droplet was formed with our keyboards. Sure, it may take some scrolling, but a couple of search terms can very easily bring up the deepest depths of our conversations from some of our most vulnerable and juvenile moments on this Earth.</p>
 <p>The existence of this bizarre, superfluous word archive at my fingertips sparked a new project idea. Sure, in a way, it’s awful that so many of the terrible, terrible takes of our pasts are still sitting out there on Facebook servers, perpetually on standby to be retrieved by whoever has the access, the interest, and a link to the conversation in question. So, why wouldn’t I take advantage of this uneasy situation and make a fun learning project out of it?</p>
 <p>My thoughts culminated into one focused project idea: an <strong>authorship classifier</strong>. One that is trained on Facebook Messenger data.</p>
 <h4 id="12-background-authorship-classification">1.2. Background: Authorship classification</h4>
-<p>Classification is a massive part of what we do with our human intelligence. We sort paper mail by postal addresses, identify people we know on the street by recognising their faces, judge whether or not we thought that the film we just watched was actually good, or just weird in a bad way&hellip;</p>
+<p>Classification is a massive part of what we do with our human intelligence. We sort paper mail by postal address, identify people we know on the street by recognising their faces, judge whether or not we thought that the film we just watched was actually good, or just weird in a bad way&hellip;</p>
 <p>In a classification process, we gather data about a certain ‘thing’ (which could come from multiple sources) and assign a particular category to it.</p>
 <p>As a useful tool, many methods of machine intelligence have been developed for classification tasks. In the realm of natural language processing, text categorisation methods have been developed to assign a label or category to an entire text or document. Some tasks that come to mind include:</p>
 <ol>
@@ -34,7 +33,7 @@ I have had a Facebook profile since my early high school years. I have access to
 <li><strong>spam detection</strong> - filtering out emails that have indicators of being spam)</li>
 <li><strong>language identification</strong> – identifying the language in which a text is written</li>
 </ol>
-<p>The method of authorship classification (sometimes called authorship attribution), takes a textual document, processes it, and then categorises it as being written by a particular individual, or author. Such a task has useful applications in the real world – for example, plagiarism detection in the education system, or resolving uncertain authorship of documents in forensic studies.</p>
+<p>The method of authorship classification (also referred to as <strong>authorship attribution</strong>), takes a textual document, processes it, and then categorises it as being written by a particular individual, or author. Such a task has useful applications in the real world – for example, plagiarism detection in the education system, or resolving uncertain authorship of documents in forensic studies.</p>
 <p>As is very often the case in computing disciplines, there isn’t just one way to build a tool that does authorship classification. Over the last couple of decades, research scientists and industry developers have studied and applied a range of methodologies for the task. The methods explored can be categorised under a few umbrellas, some of which include:</p>
 <ol>
 <li><strong>similarity-based models</strong>, which measure how similar an input text is to the textual data collected for that author, e.g., how many words in the text being classified overlap with the words collected for an author in their training data</li>
@@ -45,8 +44,8 @@ I have had a Facebook profile since my early high school years. I have access to
 <h4 id="13-naive-bayes-classification-an-explanation">1.3. Naive Bayes Classification: an explanation</h4>
 <p>In the context of authorship attribution, the Naive Bayes classification method applies Bayesian inference to calculate the most likely author to have written a given document.</p>
 <p>Bayesian inference, which originates from the 18th-century work of Thomas Bayes, works with conditional probabilities. Bayes’ theorem is stated in the mathematical equation:</p>
-<p><img src="/Users/gmwelsh/CodaBungaProjects/Codabunga/public/posts/images/Facebook-Messenger-Logo.png" alt="Naive Bayes Theorem"></p>
-<p>In the right-hand side of the equation above, we’ve got three variables:</p>
+<p>Naive Bayes</p>
+<p>In the right-hand side of the equation above, we’ve got threes variables:</p>
 <ol>
 <li>P(B|A) – a <strong>conditional probability</strong>, that is, the probability of an event B occurring given event A. This is also called the likelihood of event A given a fixed B.</li>
 <li>P(A) – the probability of event A, without P(B) in the picture. This is also called the <strong>prior probability</strong>.</li>
@@ -63,6 +62,7 @@ I have had a Facebook profile since my early high school years. I have access to
 <blockquote>
 <h5 id="pauthordocument--pdocumentauthor--pauthor">P(author|document) = P(document|author) * P(author)</h5>
 </blockquote>
+<p><img src="/nb-jurafsky.png" alt="Naive Bayes"></p>
 <p>You might be thinking: how are we fitting that entire ‘document’ into our equation here? Wouldn’t we have to break down the document into parts, analysing the different linguistic features inside the document and seeing which features correspond to which author?</p>
 <p>And that would be a good question!</p>
 <p>The way we are defining our ‘document’ for this task is by simply seeing it as a “bag of words”. The classifier is going to process the entire thing word-by-word and see what vocabulary is used in that document. Then, it will compare that vocabulary with the words that are used by each author in their training data.</p>
